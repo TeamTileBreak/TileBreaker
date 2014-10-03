@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.uark.csce.tilebreaker"
-    android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="19" />
+    package="edu.uark.csce.tilebreaker" >
 
     <application
         android:allowBackup="true"
@@ -21,6 +15,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".TileBreakerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_tile_breaker"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".PauseActivity"
+            android:label="@string/title_activity_pause" >
+        </activity>
+        <activity
+            android:name=".UpgradeActivity"
+            android:label="@string/title_activity_upgrade" >
         </activity>
     </application>
 

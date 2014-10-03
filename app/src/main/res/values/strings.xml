@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TileBreaker</string>
+    <string name="play">Play!</string>
+    <string name="pause">Pause</string>
+    <string name="upgrade">Upgrade!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_tile_breaker">TileBreakerActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_pause">PauseActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_upgrade">UpgradeActivity</string>
+    <string name="game">GAME!</string>
+
+</resources>
