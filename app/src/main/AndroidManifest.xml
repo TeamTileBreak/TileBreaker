@@ -20,7 +20,7 @@
             android:name=".TileBreakerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_tile_breaker"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".PauseActivity"
