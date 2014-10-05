@@ -27,6 +27,9 @@
         android:onClick="playGame"
         style="@style/btnGreen"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"/>
 
 </RelativeLayout>
