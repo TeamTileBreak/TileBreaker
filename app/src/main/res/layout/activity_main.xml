@@ -29,4 +29,4 @@
         android:onClick="playGame"
         style="@style/btnGreen"/>
 
-</RelativeLayout><!-- From: file:/Users/jonathankilpatrick/TileBreaker/app/src/main/res/layout/activity_main.xml -->
+</RelativeLayout>

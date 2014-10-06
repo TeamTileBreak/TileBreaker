@@ -37,11 +37,6 @@
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
-                name="activity_main"
-                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/layout/activity_main.xml"
-                qualifiers=""
-                type="layout" />
-            <file
                 name="activity_pause"
                 path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/layout/activity_pause.xml"
                 qualifiers=""
@@ -240,7 +235,7 @@ center
 
                 <style
                     name="AppTheme"
-                    parent="android:Theme.Holo.Light.DarkActionBar" >
+                    parent="android:Theme.Black.NoTitleBar" >
 
                     <!-- Customize your theme here. -->
                 </style>
@@ -283,6 +278,141 @@ true
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
+            <file
+                name="upgradecheckbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/upgradecheckbtn.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgrade_rectangle"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/upgrade_rectangle.xml"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradebg"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/upgradebg.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradecheckbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xhdpi/upgradecheckbtn.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradexbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/upgradexbtn.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradecheckbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xxhdpi/upgradecheckbtn.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradesavebtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xxhdpi/upgradesavebtn.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradetrashbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-mdpi/upgradetrashbtn.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradetrashbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xxhdpi/upgradetrashbtn.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradesavebtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xhdpi/upgradesavebtn.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradexbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-mdpi/upgradexbtn.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradetrashbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/upgradetrashbtn.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradesavebtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-mdpi/upgradesavebtn.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="bgtile"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/bgtile.xml"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgrade_rectangle"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-mdpi/upgrade_rectangle.xml"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradetrashbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xhdpi/upgradetrashbtn.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradebg"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xhdpi/upgradebg.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="bak"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/bak.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradecheckbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-mdpi/upgradecheckbtn.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradesavebtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-hdpi/upgradesavebtn.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradexbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xxhdpi/upgradexbtn.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradexbtn"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xhdpi/upgradexbtn.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgrade_rectangle"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xxhdpi/upgrade_rectangle.xml"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgrade_rectangle"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xhdpi/upgrade_rectangle.xml"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradebg"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-mdpi/upgradebg.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="upgradebg"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-xxhdpi/upgradebg.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="activity_main"
+                path="/Users/jonathankilpatrick/TileBreaker/app/src/main/res/layout/activity_main.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="/Users/jonathankilpatrick/TileBreaker/app/build/generated/res/rs/debug" />
         <source path="/Users/jonathankilpatrick/TileBreaker/app/build/generated/res/generated/debug" />

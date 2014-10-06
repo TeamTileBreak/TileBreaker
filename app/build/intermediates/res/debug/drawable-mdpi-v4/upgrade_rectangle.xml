@@ -1,0 +1,3 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:startColor="#777777" android:endColor="#555555" android:angle="90"/>
+</shape><!-- From: file:/Users/jonathankilpatrick/TileBreaker/app/src/main/res/drawable-mdpi/upgrade_rectangle.xml -->

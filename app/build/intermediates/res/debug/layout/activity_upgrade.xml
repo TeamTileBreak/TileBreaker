@@ -2,20 +2,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/bgtile"
+    android:layout_weight="0"
     tools:context="edu.uark.csce.tilebreaker.UpgradeActivity">
 
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/upgrade_rectangle"
+    />
     <TextView
-        android:text="Upgrade"
-        android:textSize="40sp"
-        android:layout_width="wrap_content"
+        android:text="UPGRADE"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="177dp"/>
+        android:textColor="#ffffff"
+    />
+    <TextView
+        android:text="§  0"
+        android:textColor="#EEEEEE"
+        android:layout_marginTop="60dp"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:width="300dp"
+        android:gravity="center"
+        android:background="#777777"
+        android:textSize="20dp"
+    />
+    <ImageButton
+        android:id="@+id/xBtn"
+        android:background="@drawable/upgradexbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+    />
+    <ImageButton
+        android:background="@drawable/upgradetrashbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/xBtn"
+        android:layout_toEndOf="@+id/xBtn"
+        android:layout_marginLeft="5dp"
+    />
+    <ImageButton
+        android:id="@+id/checkBtn"
+        android:background="@drawable/upgradecheckbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+    />
+<!--    <ImageButton
+        android:background="@drawable/upgradesavebtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/checkBtn"
+        android:layout_toStartOf="@id/checkBtn"
+        android:layout_marginRight="5dp"
+    />-->
+
+
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/upgrade_rectangle"
+        android:layout_alignParentBottom="true"
+    />
 
 </RelativeLayout>
 <!-- From: file:/Users/jonathankilpatrick/TileBreaker/app/src/main/res/layout/activity_upgrade.xml -->
