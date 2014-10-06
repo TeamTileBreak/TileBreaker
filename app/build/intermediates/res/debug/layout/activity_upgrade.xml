@@ -6,25 +6,16 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="edu.uark.csce.tilebreaker.PauseActivity">
+    tools:context="edu.uark.csce.tilebreaker.UpgradeActivity">
 
     <TextView
-        android:text="@string/pause"
+        android:text="Upgrade"
         android:textSize="40sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score Placeholder"
-        android:id="@+id/scoreView"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp" />
+        android:layout_marginTop="177dp"/>
 
 </RelativeLayout>
+<!-- From: file:/Users/jonathankilpatrick/TileBreaker/app/src/main/res/layout/activity_upgrade.xml -->

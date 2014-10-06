@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="62dp"
-        android:id="@+id/textView"/>
+        android:id="@+id/scoreView"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
         android:text="@string/play"
         android:id="@+id/button"
         android:layout_marginTop="165dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/scoreView"
         android:layout_centerHorizontal="true"
         android:onClick="playGame"
         style="@style/btnGreen"/>
