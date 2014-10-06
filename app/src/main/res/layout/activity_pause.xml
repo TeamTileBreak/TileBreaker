@@ -9,6 +9,7 @@
     tools:context="edu.uark.csce.tilebreaker.PauseActivity">
 
     <TextView
+        android:id="@+id/textview2"
         android:text="@string/paused"
         android:textSize="40sp"
         android:layout_width="wrap_content"
@@ -22,7 +23,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Score Placeholder"
         android:id="@+id/scoreView"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@id/textview2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp" />
 
