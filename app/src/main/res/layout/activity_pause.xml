@@ -16,6 +16,17 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Score Placeholder"
+        android:id="@+id/scoreView"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp" />
+
+
     <Button
         android:id="@+id/resume_btn"
         android:layout_width="200dp"
