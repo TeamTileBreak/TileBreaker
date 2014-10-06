@@ -1,15 +1,17 @@
 package edu.uark.csce.tilebreaker;
 
+import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
 import edu.uark.csce.tilebreaker.util.SystemUiHider;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.view.MotionEvent;
 import android.view.View;
+
 
 
 /**
@@ -18,7 +20,9 @@ import android.view.View;
  *
  * @see SystemUiHider
  */
-public class TileBreakerActivity extends Activity {
+
+
+public class TileBreakerActivity extends FragmentActivity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -160,16 +164,20 @@ public class TileBreakerActivity extends Activity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    public void pauseGame(View view) {
-        Intent intent = new Intent(this, PauseActivity.class);
-
-        startActivity(intent);
+    public void pauseGame(View v){
+        PauseDialogFragment df;
+        df = new PauseDialogFragment(this);
+        df.show(getSupportFragmentManager(), "fragment_alert");
     }
 
     public void chooseUpgrade(View view) {
         Intent intent = new Intent(this, UpgradeActivity.class);
 
         startActivity(intent);
+    }
+
+    public void finishTB() {
+        TileBreakerActivity.this.finish();
     }
 
 }
