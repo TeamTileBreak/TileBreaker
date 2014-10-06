@@ -1,32 +1,57 @@
 package edu.uark.csce.tilebreaker;
 
-import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 public class UpgradeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        View decorView = getWindow().getDecorView();
-// Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-// Remember that you should never show the action bar if the
-// status bar is hidden, so hide that too if necessary.
-        ActionBar actionBar = getActionBar();
-        actionBar.hide();
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade);
+
+        //X BUTTON LISTENER
+        ImageButton xBtn = (ImageButton) findViewById(R.id.xBtn);
+        xBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        //CHECK BUTTON LISTENER
+        ImageButton checkBtn = (ImageButton) findViewById(R.id.checkBtn);
+        checkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveUpgrades();
+                Intent intent = new Intent(UpgradeActivity.this, PauseActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
+    //-------------------------------------------------------
+
+
+    private void saveUpgrades() {
+        return;
+    }
+
+
+
+
+
+
+    //-------------------------------------------------------
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

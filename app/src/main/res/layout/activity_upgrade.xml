@@ -6,13 +6,16 @@
     android:layout_weight="0"
     tools:context="edu.uark.csce.tilebreaker.UpgradeActivity">
 
+    <!--Title Bar-->
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@drawable/upgrade_rectangle"
     />
+
+    <!--UPGRADES text-->
     <TextView
-        android:text="UPGRADE"
+        android:text="UPGRADES"
         android:textSize="30dp"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
@@ -22,6 +25,8 @@
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
     />
+
+    <!--User Credits-->
     <TextView
         android:text="§  0"
         android:textColor="#EEEEEE"
@@ -33,20 +38,28 @@
         android:background="#777777"
         android:textSize="20dp"
     />
+
+    <!--X Button-->
     <ImageButton
         android:id="@+id/xBtn"
         android:background="@drawable/upgradexbtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
     />
+
+    <!--Trash Button-->
+<!--
     <ImageButton
         android:background="@drawable/upgradetrashbtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_toRightOf="@id/xBtn"
-        android:layout_toEndOf="@+id/xBtn"
+        android:layout_toEndOf="@id/xBtn"
         android:layout_marginLeft="5dp"
     />
+-->
+    <!--Save Changes (Check) Button-->
     <ImageButton
         android:id="@+id/checkBtn"
         android:background="@drawable/upgradecheckbtn"
@@ -54,8 +67,12 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
     />
-<!--    <ImageButton
+
+    <!--Floppy Disk (Save) Button-->
+<!--
+    <ImageButton
         android:background="@drawable/upgradesavebtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -63,15 +80,52 @@
         android:layout_toLeftOf="@id/checkBtn"
         android:layout_toStartOf="@id/checkBtn"
         android:layout_marginRight="5dp"
-    />-->
+    />
+-->
 
-
-
-    <FrameLayout
+    <!--Inventory Bar-->
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:background="@drawable/upgrade_rectangle"
-        android:layout_alignParentBottom="true"
-    />
+        android:layout_alignParentBottom="true">
 
+        <TextView
+            android:id="@+id/inventory1"
+            android:background="@drawable/empty_upgrade_slot"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+
+            android:text="@string/empty_upgrade_slot"
+            android:gravity="center"
+            android:textSize="20dp"
+        />
+        <TextView
+            android:id="@+id/inventory2"
+            android:background="@drawable/empty_upgrade_slot"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerInParent="true"
+
+            android:text="@string/empty_upgrade_slot"
+            android:gravity="center"
+            android:textSize="20dp"
+        />
+        <TextView
+            android:id="@+id/inventory3"
+            android:background="@drawable/empty_upgrade_slot"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+
+            android:text="@string/empty_upgrade_slot"
+            android:gravity="center"
+            android:textSize="20dp"
+            />
+    </RelativeLayout>
 </RelativeLayout>
