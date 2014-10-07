@@ -134,6 +134,8 @@
     </RelativeLayout>
 
     <ImageButton
+        android:src="@drawable/upgrade_extended_platform"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug2"
@@ -141,6 +143,8 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
+        android:src="@drawable/upgrade_multiball"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug1"
@@ -149,6 +153,8 @@
         android:layout_marginRight="20dp"/>
 
     <ImageButton
+        android:src="@drawable/upgrade_slow_time"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug3"
@@ -157,6 +163,8 @@
         android:layout_marginLeft="20dp" />
 
     <ImageButton
+        android:src="@drawable/upgrade_freeze"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug5"
@@ -164,6 +172,8 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
+        android:src="@drawable/upgrade_exploding_bricks"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug4"
@@ -172,6 +182,8 @@
         android:layout_marginTop="220dp"/>
 
     <ImageButton
+        android:src="@drawable/upgrade_net"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug6"
@@ -180,6 +192,8 @@
         android:layout_marginTop="220dp" />
 
     <ImageButton
+        android:src="@drawable/upgrade_reverse_gravity"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug8"
@@ -187,6 +201,8 @@
         android:layout_marginTop="340dp"/>
 
     <ImageButton
+        android:src="@drawable/upgrade_mega_ball"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug7"
@@ -195,6 +211,8 @@
         android:layout_marginTop="340dp"/>
 
     <ImageButton
+        android:src="@drawable/upgrade_nuke"
+        android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug9"
