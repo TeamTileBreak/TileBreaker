@@ -21,7 +21,9 @@ public class UpgradeActivity extends Activity {
         xBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(UpgradeActivity.this, PauseActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         //CHECK BUTTON LISTENER

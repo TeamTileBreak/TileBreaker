@@ -33,6 +33,7 @@
 
     <Button
         android:id="@+id/resume_btn"
+        android:background="@drawable/upgrade_rectangle"
         android:textColor="#fff"
         android:layout_width="200dp"
         android:layout_height="75dp"
@@ -43,6 +44,7 @@
 
     <Button
         android:id="@+id/upgrade_btn"
+        android:background="@drawable/upgrade_rectangle"
         android:textColor="#fff"
         android:layout_width="200dp"
         android:layout_height="75dp"
@@ -54,6 +56,7 @@
         android:layout_marginTop="10dp"/>
     <Button
         android:id="@+id/quit_btn"
+        android:background="@drawable/upgrade_rectangle"
         android:textColor="#fff"
         android:layout_width="200dp"
         android:layout_height="75dp"

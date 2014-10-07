@@ -1,9 +1,12 @@
 package edu.uark.csce.tilebreaker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class PauseActivity extends Activity {
@@ -12,6 +15,43 @@ public class PauseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pause);
+
+        //RESUME BUTTON LISTENER
+        Button resumeBtn = (Button) findViewById(R.id.resume_btn);
+        resumeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unpause();
+                onBackPressed();
+            }
+        });
+
+        //UPGRADES BUTTON LISTENER
+        Button upgradesBtn = (Button) findViewById(R.id.upgrade_btn);
+        upgradesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PauseActivity.this, UpgradeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        //QUIT BUTTON LISTENER
+        Button quitBtn = (Button) findViewById(R.id.quit_btn);
+        quitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PauseActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    //UNPAUSE FUNCTION
+    private void unpause() {
+        return;
     }
 
 

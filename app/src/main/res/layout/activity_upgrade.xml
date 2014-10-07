@@ -20,7 +20,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:gravity="center"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
@@ -37,7 +37,7 @@
         android:gravity="center"
         android:background="#777777"
         android:textSize="20dp"
-    />
+        android:id="@+id/creditsView" />
 
     <!--X Button-->
     <ImageButton
@@ -86,46 +86,119 @@
     <!--Inventory Bar-->
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="110dp"
         android:background="@drawable/upgrade_rectangle"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/relativeLayout">
+
+        <TextView
+            android:id="@+id/inventory2"
+            android:background="@drawable/empty_upgrade_slot"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+
+
+            android:text="@string/empty_upgrade_slot"
+            android:gravity="center"
+            android:textSize="20dp"
+        />
 
         <TextView
             android:id="@+id/inventory1"
             android:background="@drawable/empty_upgrade_slot"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
+            android:layout_width="100sp"
+            android:layout_height="100dp"
+            android:layout_toLeftOf="@id/inventory2"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
 
             android:text="@string/empty_upgrade_slot"
             android:gravity="center"
             android:textSize="20dp"
         />
-        <TextView
-            android:id="@+id/inventory2"
-            android:background="@drawable/empty_upgrade_slot"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_centerInParent="true"
 
-            android:text="@string/empty_upgrade_slot"
-            android:gravity="center"
-            android:textSize="20dp"
-        />
         <TextView
             android:id="@+id/inventory3"
             android:background="@drawable/empty_upgrade_slot"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="25dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_toRightOf="@id/inventory2"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
 
             android:text="@string/empty_upgrade_slot"
             android:gravity="center"
             android:textSize="20dp"
             />
     </RelativeLayout>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug2"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug1"
+        android:layout_toLeftOf="@id/ug2"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug3"
+        android:layout_toRightOf="@id/ug2"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug5"
+        android:layout_marginTop="220dp"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug4"
+        android:layout_toLeftOf="@id/ug5"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="220dp"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug6"
+        android:layout_toRightOf="@id/ug5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="220dp" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="340dp"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug7"
+        android:layout_toLeftOf="@id/ug8"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="340dp"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug9"
+        android:layout_toRightOf="@id/ug8"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="340dp"/>
 </RelativeLayout>
