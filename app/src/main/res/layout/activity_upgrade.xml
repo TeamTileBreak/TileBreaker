@@ -134,6 +134,7 @@
     </RelativeLayout>
 
     <ImageButton
+        android:src="@drawable/platform_expand"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug2"
@@ -141,6 +142,7 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
+        android:src="@drawable/twoball"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug1"
@@ -149,6 +151,7 @@
         android:layout_marginRight="20dp"/>
 
     <ImageButton
+        android:src="@drawable/twox"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug3"
@@ -157,6 +160,7 @@
         android:layout_marginLeft="20dp" />
 
     <ImageButton
+        android:src="@drawable/slow_time"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug5"
@@ -164,6 +168,7 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
+        android:src="@drawable/threeball"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug4"
@@ -172,6 +177,7 @@
         android:layout_marginTop="220dp"/>
 
     <ImageButton
+        android:src="@drawable/threex"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug6"
@@ -187,6 +193,7 @@
         android:layout_marginTop="340dp"/>
 
     <ImageButton
+        android:src="@drawable/time_extension"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug7"
