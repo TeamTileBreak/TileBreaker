@@ -6,10 +6,12 @@ import edu.uark.csce.tilebreaker.util.SystemUiHider;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,6 +41,11 @@ public class TileBreakerActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE);
+        boolean Lightening = pref.getBoolean("Lightening",false);
+        Log.i("Lightening", String.valueOf(Lightening));
+
         view = new MyView(this);
         setContentView(view);
         paused = false;
@@ -47,15 +54,15 @@ public class TileBreakerActivity extends FragmentActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 int touchX = (int) event.getX();
                 int touchY = (int) event.getY();
-                if(touchX <250 && touchY<100){
-                    if(!paused){
+                if (touchX < 250 && touchY < 100) {
+                    if (!paused) {
                         pauseGame(v);
                         paused = true;
                     }
                     System.out.println(touchY);
-                }else if(touchX > v.getWidth()-250 && touchY < 100){
+                } else if (touchX > v.getWidth() - 250 && touchY < 100) {
                     chooseUpgrade(v);
-                }else{
+                } else {
                     onScreenTouch(touchX, touchY);
                 }
 
@@ -184,7 +191,7 @@ public class TileBreakerActivity extends FragmentActivity {
 
     public void chooseUpgrade(View view) {
         Intent intent = new Intent(this, UpgradeActivity.class);
-
+        TileBreakerActivity.this.finish();
         startActivity(intent);
     }
 
