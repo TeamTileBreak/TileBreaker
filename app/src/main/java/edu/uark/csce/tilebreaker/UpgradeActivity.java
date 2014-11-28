@@ -24,7 +24,7 @@ public class UpgradeActivity extends Activity {
         xBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UpgradeActivity.this, PauseActivity.class);
+                Intent intent = new Intent(UpgradeActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

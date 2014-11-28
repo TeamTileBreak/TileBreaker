@@ -41,4 +41,10 @@ public class MainActivity extends Activity {
 
         startActivity(intent);
     }
+
+    public void chooseUpgrade(View view) {
+        Intent intent = new Intent(this, UpgradeActivity.class);
+
+        startActivity(intent);
+    }
 }
