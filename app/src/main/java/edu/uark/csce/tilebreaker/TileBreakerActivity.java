@@ -201,5 +201,11 @@ public class TileBreakerActivity extends FragmentActivity {
         TileBreakerActivity.this.finish();
         startActivity(intent);
     }
-
+    
+    @Override
+    public void onBackPressed(){
+        Intent it = new Intent(this, MainActivity.class);
+        TileBreakerActivity.this.finish();
+        startActivity(it);
+    }
 }
