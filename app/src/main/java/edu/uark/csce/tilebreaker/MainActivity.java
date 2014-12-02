@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 
     public void playGame(View view) {
         Intent intent = new Intent(this, TileBreakerActivity.class);
-
+        MainActivity.this.finish();
         startActivity(intent);
     }
 
