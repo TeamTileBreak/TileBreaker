@@ -36,6 +36,7 @@ import android.support.v4.app.FragmentActivity;
 public class TileBreakerActivity extends FragmentActivity {
 
     public static boolean paused = false;
+    public static boolean upgrade = false;
     private MyView view;
     /** Called when the activity is first created. */
     @Override
@@ -54,14 +55,20 @@ public class TileBreakerActivity extends FragmentActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 int touchX = (int) event.getX();
                 int touchY = (int) event.getY();
+                //Log.d("TOUCH!", "Touched at (" + touchX + "," + touchY + ")");
                 if (touchX < 250 && touchY < 100) {
                     if (!paused) {
                         pauseGame(v);
                         paused = true;
+                        //Log.d("Pause", "Calling pauseGame from TileBreakerActivity");
                     }
                     System.out.println(touchY);
                 } else if (touchX > v.getWidth() - 250 && touchY < 100) {
-                    chooseUpgrade(v);
+                    if (!upgrade) {
+                        chooseUpgrade(v);
+                        upgrade = true;
+                        //Log.d("Upgrade", "Calling chooseUpgrade from TileBreakerActivity");
+                    }
                 } else {
                     onScreenTouch(touchX, touchY);
                 }
