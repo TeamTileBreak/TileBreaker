@@ -1,30 +1,19 @@
 package edu.uark.csce.tilebreaker;
 
-import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
-import edu.uark.csce.tilebreaker.util.SystemUiHider;
-
-import android.annotation.TargetApi;
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.DragEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+
+import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
+import edu.uark.csce.tilebreaker.util.SystemUiHider;
 
 
 /**
@@ -56,19 +45,13 @@ public class TileBreakerActivity extends FragmentActivity {
                 int touchX = (int) event.getX();
                 int touchY = (int) event.getY();
                 //Log.d("TOUCH!", "Touched at (" + touchX + "," + touchY + ")");
-                if (touchX < 250 && touchY < 100) {
+                if (touchX < view.getWidth() && touchY < 100) {
                     if (!paused) {
                         pauseGame(v);
                         paused = true;
                         //Log.d("Pause", "Calling pauseGame from TileBreakerActivity");
                     }
                     System.out.println(touchY);
-                } else if (touchX > v.getWidth() - 250 && touchY < 100) {
-                    if (!upgrade) {
-                        chooseUpgrade(v);
-                        upgrade = true;
-                        //Log.d("Upgrade", "Calling chooseUpgrade from TileBreakerActivity");
-                    }
                 } else {
                     onScreenTouch(touchX, touchY);
                 }
@@ -114,12 +97,11 @@ public class TileBreakerActivity extends FragmentActivity {
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.parseColor("#000000"));
             paint.setStrokeWidth(5);
-            canvas.drawRect(0,0,250,100,paint);
-            canvas.drawRect(getWidth()-250,0,getWidth(),100,paint);
+            canvas.drawRect(0,0,getWidth(),100,paint);
             paint.setStrokeWidth(0);
             paint.setTextSize(60);
-            canvas.drawText("Pause",40,75,paint);
-            canvas.drawText("Upgrade",getWidth()-235,75,paint);
+            int pauseWidth = (getWidth()/2)-80;
+            canvas.drawText("Pause",pauseWidth,75,paint);
             invalidate();
         }
 
