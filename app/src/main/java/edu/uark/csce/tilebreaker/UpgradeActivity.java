@@ -25,6 +25,7 @@ public class UpgradeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UpgradeActivity.this, MainActivity.class);
+                TileBreakerActivity.upgrade = false;
                 startActivity(intent);
                 finish();
             }
@@ -36,7 +37,8 @@ public class UpgradeActivity extends Activity {
             public void onClick(View v) {
                 saveUpgrades();
                 Intent intent = new Intent(UpgradeActivity.this, TileBreakerActivity.class);
-                UpgradeActivity.this.finish();
+                TileBreakerActivity.upgrade = false;
+                finish();
                 startActivity(intent);
             }
         });
@@ -47,6 +49,7 @@ public class UpgradeActivity extends Activity {
     private void saveUpgrades() {
         //store upgrade values (all of them)
         SharedPreferences.Editor pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
+
         pref.putBoolean("Lightening", true);
         pref.commit();
         //UpgradeActivity.this.finish();
