@@ -73,7 +73,6 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
     }
 
     public class MyView extends View {
@@ -142,7 +141,11 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
             int pauseWidth = (getWidth()/2)-80;
             canvas.drawText("Pause",pauseWidth,75,paint);
 
-            paddle.update(x);
+            // Updates paddle via accelerometer
+            if(!paused) {
+                onResume();
+                paddle.update(x);
+            }
 
             invalidate();
         }
@@ -183,6 +186,9 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         PauseDialogFragment df;
         df = new PauseDialogFragment(this);
         df.show(getSupportFragmentManager(), "fragment_alert");
+
+        // Stops listening to accelerometer
+        onPause();
     }
 
     public void chooseUpgrade(View view) {
@@ -208,13 +214,10 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
 
     @Override
     public void onAccuracyChanged(Sensor arg0, int arg1) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        // TODO Auto-generated method stub
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 
             x -= (int) event.values[0];
