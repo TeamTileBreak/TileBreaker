@@ -20,16 +20,30 @@
         android:layout_centerHorizontal="true"/>
 
     <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/newGame"
+    android:id="@+id/button"
+    android:onClick="playGame"
+    style="@style/btnGreen"
+    android:layout_below="@+id/textView"
+    android:layout_alignLeft="@+id/textView"
+    android:layout_alignStart="@+id/textView"
+    android:layout_alignRight="@+id/textView"
+    android:layout_alignEnd="@+id/textView"/>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/play"
-        android:id="@+id/button"
-        android:onClick="playGame"
+        android:text="@string/continueGame"
+        android:id="@+id/button2"
+        android:onClick="chooseUpgrade"
         style="@style/btnGreen"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"/>
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="71dp"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button"/>
 
 </RelativeLayout>

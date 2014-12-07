@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">TileBreaker</string>
-    <string name="play">Play!</string>
+    <string name="newGame">New Game</string>
+    <string name="continueGame">Resume Game</string>
     <string name="pause">Pause</string>
     <string name="paused">Game Paused</string>
     <string name="upgrade">Upgrades</string>

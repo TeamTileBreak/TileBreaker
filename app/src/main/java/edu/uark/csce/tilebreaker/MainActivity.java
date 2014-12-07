@@ -38,7 +38,13 @@ public class MainActivity extends Activity {
 
     public void playGame(View view) {
         Intent intent = new Intent(this, TileBreakerActivity.class);
+        MainActivity.this.finish();
+        startActivity(intent);
+    }
 
+    public void chooseUpgrade(View view) {
+        Intent intent = new Intent(this, UpgradeActivity.class);
+        MainActivity.this.finish();
         startActivity(intent);
     }
 }
