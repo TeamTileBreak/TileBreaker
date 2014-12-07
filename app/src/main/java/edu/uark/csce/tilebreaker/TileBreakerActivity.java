@@ -4,29 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.graphics.Point;
-import android.os.Build;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Display;
-import android.view.DragEvent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import android.support.v4.app.FragmentActivity;
+
 import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
 import edu.uark.csce.tilebreaker.util.SystemUiHider;
 
@@ -37,11 +30,15 @@ import edu.uark.csce.tilebreaker.util.SystemUiHider;
  *
  * @see SystemUiHider
  */
-public class TileBreakerActivity extends FragmentActivity {
+public class TileBreakerActivity extends FragmentActivity implements SensorEventListener {
 
     public static boolean paused = false;
     public static boolean upgrade = false;
     private MyView view;
+    public static int x;
+    public static int y;
+    private SensorManager sensorManager;
+    private Sensor accelerometer;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +69,11 @@ public class TileBreakerActivity extends FragmentActivity {
                 return true;
             }
         });
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accelerometer = sensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
     }
 
     public class MyView extends View {
@@ -139,6 +141,9 @@ public class TileBreakerActivity extends FragmentActivity {
             //Tells view that it needs to be updated
             int pauseWidth = (getWidth()/2)-80;
             canvas.drawText("Pause",pauseWidth,75,paint);
+
+            paddle.update(x);
+
             invalidate();
         }
 
@@ -184,6 +189,38 @@ public class TileBreakerActivity extends FragmentActivity {
         Intent intent = new Intent(this, UpgradeActivity.class);
 
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(this, accelerometer,
+                SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+
+
+    @Override
+    public void onAccuracyChanged(Sensor arg0, int arg1) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        // TODO Auto-generated method stub
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+
+            x -= (int) event.values[0];
+            y += (int) event.values[1];
+
+        }
     }
 
 }
