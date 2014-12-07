@@ -7,9 +7,11 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -52,9 +55,6 @@ public class TileBreakerActivity extends FragmentActivity {
                         pauseGame(v);
                         paused = true;
                     }
-                    System.out.println(touchY);
-                }else if(touchX > v.getWidth()-250 && touchY < 100){
-                    chooseUpgrade(v);
                 }else{
                     onScreenTouch(touchX, touchY);
                 }
@@ -65,111 +65,98 @@ public class TileBreakerActivity extends FragmentActivity {
     }
 
     public class MyView extends View {
-        int x;
-        int y;
-        int paddleX;
-        int paddleY;
-        int paddleWidth = 200;
-        int ballYVel = 6;
-        int ballXVel = 6;
-        boolean goingLeft = false;
-        boolean goingUp = false;
-        boolean alive = true;
-        boolean firstTime = true;
+        //Custom Objects
+        Paddle paddle;
+        Ball ball;
+        ArrayList<Block> blocks;
+
+        //Default Graphics
+        Paint paint;
+
+        //Technical vars
+        int screenWidth,screenHeight;
+
+        //Game logic vars
+        boolean alive = false;
+
+
+        //Constructor for MyView, called before any code within
         public MyView(Context context) {
             super(context);
+            paint = new Paint();
+
+            //Getting Screen Height and Width
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            screenWidth = size.x;
+            screenHeight = size.y;
+
+            //initialize screen
+            spawn();
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
-            // TODO Auto-generated method stub
             super.onDraw(canvas);
-            if(!paused)
-                updateBall();
+            if(!paused) {
+                alive = ball.update(paddle,blocks);
+                for(Block block : blocks){
+                    block.update();
+                }
+            }
+            if(!alive)
+                spawn();
 
-            if(firstTime){
-                init();
+            //clearing canvas by filling with a color
+            canvas.drawColor(Color.rgb(0,153,204));
+
+            //drawing objects
+            ball.paint(paint,canvas);
+            paddle.paint(paint,canvas);
+            for(Block block : blocks){
+                block.paint(paint,canvas);
             }
 
-            Paint paint = new Paint();
-            paint.setStyle(Paint.Style.FILL);
-            paint.setColor(Color.WHITE);
-            canvas.drawPaint(paint);
-            drawBall(paint,canvas);
-            drawPaddle(paint,canvas);
+            //Drawing Pause Button
             paint.setStyle(Paint.Style.STROKE);
-            paint.setColor(Color.parseColor("#000000"));
+            paint.setColor(Color.WHITE);
             paint.setStrokeWidth(5);
             canvas.drawRect(0,0,250,100,paint);
-            canvas.drawRect(getWidth()-250,0,getWidth(),100,paint);
             paint.setStrokeWidth(0);
             paint.setTextSize(60);
             canvas.drawText("Pause",40,75,paint);
-            canvas.drawText("Upgrade",getWidth()-235,75,paint);
+
+            //Tells view that it needs to be updated
             invalidate();
         }
 
-        private void init(){
-            paddleX = getWidth()/2;
-            paddleY = getHeight()-150;
-            firstTime = false;
-            x=1;
-            y=1;
-            ballXVel = 6;
-            ballYVel = 6;
-            goingLeft = false;
-            goingUp = false;
+        private void spawn(){
+            //creates paddle with an x,y,width, and height
+            paddle = new Paddle(screenWidth/2,screenHeight-150,200,10,screenWidth,screenHeight);
+            //creates ball with an x and a y
+            ball = new Ball(paddle.x,paddle.ty,screenWidth,screenHeight);
+
+            //Creates array of blocks
+            blocks = newBlocks(10,5);
+            alive = true;
         }
 
-        private void die(){
-            firstTime = true;
-        }
-
-        private void updateBall(){
-            if(x>=getWidth() || x<=0){
-                ballXVel = -ballXVel;
-            }
-            if(y>=getHeight()-150){
-                if(x >= paddleX-paddleWidth/2 && x <= paddleX+paddleWidth/2){
-                    ballXVel = (x-paddleX)* 6 / (paddleWidth/2);
-                    ballYVel = -ballYVel;
-                }else{
-                    die();
+        private ArrayList<Block> newBlocks(int rows, int rowWidth) {
+            ArrayList<Block> retList = new ArrayList<Block>();
+            for(int i = 1; i <= rows; i++){
+                for(int j = 0; j < rowWidth; j++){
+                    retList.add(new Block(screenWidth/(rowWidth)*j,screenWidth/(rowWidth)*(j+1),-30*(i+1),-30*i,4));
                 }
-            }else if(y<=0){
-                ballYVel = -ballYVel;
             }
-            x+=ballXVel;
-            y+=ballYVel;
+            return retList;
         }
 
         private void onTouch(int touchX, int touchY){
-            updatePaddle(touchX);
-        }
-
-        private void updatePaddle(int touchX){
-            if(touchX <= paddleWidth/2){
-                paddleX = paddleWidth/2;
-            }else if(touchX >= getWidth()-paddleWidth/2){
-                paddleX = getWidth()-paddleWidth/2;
-            }else{
-                paddleX = touchX;
-            }
+            paddle.update(touchX);
         }
 
 
-
-        private void drawBall(Paint paint, Canvas canvas){
-            // Use Color.parseColor to define HTML colors
-            paint.setColor(Color.parseColor("#AAAAAA"));
-            canvas.drawCircle(x, y, 10, paint);
-        }
-
-        private void drawPaddle(Paint paint, Canvas canvas){
-            // Use Color.parseColor to define HTML colors
-            paint.setColor(Color.parseColor("#AAAAAA"));
-            canvas.drawRect(paddleX - paddleWidth / 2, paddleY+10, paddleX + paddleWidth / 2, paddleY + 20, paint);
-        }
     }
 
     public void onScreenTouch(int touchX,int touchY){
