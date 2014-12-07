@@ -1,18 +1,19 @@
 package edu.uark.csce.tilebreaker;
 
-import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
-import edu.uark.csce.tilebreaker.util.SystemUiHider;
-
-import android.annotation.TargetApi;
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.os.Build;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
 import android.view.DragEvent;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.app.Activity;
@@ -26,6 +27,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import android.support.v4.app.FragmentActivity;
+import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
+import edu.uark.csce.tilebreaker.util.SystemUiHider;
 
 
 /**
@@ -37,11 +40,17 @@ import android.support.v4.app.FragmentActivity;
 public class TileBreakerActivity extends FragmentActivity {
 
     public static boolean paused = false;
+    public static boolean upgrade = false;
     private MyView view;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE);
+        boolean Lightening = pref.getBoolean("Lightening",false);
+        Log.i("Lightening", String.valueOf(Lightening));
+
         view = new MyView(this);
         setContentView(view);
         paused = false;
@@ -50,8 +59,9 @@ public class TileBreakerActivity extends FragmentActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 int touchX = (int) event.getX();
                 int touchY = (int) event.getY();
-                if(touchX <250 && touchY<100){
-                    if(!paused){
+                //Log.d("TOUCH!", "Touched at (" + touchX + "," + touchY + ")");
+                if (touchX < view.getWidth() && touchY < 100) {
+                    if (!paused) {
                         pauseGame(v);
                         paused = true;
                     }
@@ -122,12 +132,13 @@ public class TileBreakerActivity extends FragmentActivity {
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(Color.WHITE);
             paint.setStrokeWidth(5);
-            canvas.drawRect(0,0,250,100,paint);
+            canvas.drawRect(0,0,getWidth(),100,paint);
             paint.setStrokeWidth(0);
             paint.setTextSize(60);
-            canvas.drawText("Pause",40,75,paint);
 
             //Tells view that it needs to be updated
+            int pauseWidth = (getWidth()/2)-80;
+            canvas.drawText("Pause",pauseWidth,75,paint);
             invalidate();
         }
 

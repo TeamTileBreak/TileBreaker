@@ -11,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 
+import edu.uark.csce.tilebreaker.MainActivity;
 import edu.uark.csce.tilebreaker.TileBreakerActivity;
 import edu.uark.csce.tilebreaker.UpgradeActivity;
 
@@ -32,9 +33,11 @@ public class PauseDialogFragment extends DialogFragment{
                 .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        Intent it = new Intent(mActivity, MainActivity.class);
                         // FIRE ZE MISSILES!
                         dialog.dismiss();
                         mActivity.finish();
+                        startActivity(it);
                     }
                 })
                 .setNegativeButton("Continue", new DialogInterface.OnClickListener() {
@@ -46,12 +49,13 @@ public class PauseDialogFragment extends DialogFragment{
                     }
                 })
                 .setTitle("Paused")
-
                 .setNeutralButton("Upgrade", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Intent it = new Intent(mActivity, UpgradeActivity.class);
+                        TileBreakerActivity.paused = false;
                         dialog.dismiss();
+                        mActivity.finish();
                         startActivity(it);
 
                     }
@@ -63,4 +67,3 @@ public class PauseDialogFragment extends DialogFragment{
     }
 
 }
-

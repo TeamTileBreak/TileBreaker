@@ -2,6 +2,7 @@ package edu.uark.csce.tilebreaker;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,8 @@ import android.widget.ImageButton;
 
 
 public class UpgradeActivity extends Activity {
+
+    public static final String PREF_NAME = "myPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,8 @@ public class UpgradeActivity extends Activity {
         xBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UpgradeActivity.this, PauseActivity.class);
+                Intent intent = new Intent(UpgradeActivity.this, MainActivity.class);
+                TileBreakerActivity.upgrade = false;
                 startActivity(intent);
                 finish();
             }
@@ -32,9 +36,10 @@ public class UpgradeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 saveUpgrades();
-                Intent intent = new Intent(UpgradeActivity.this, PauseActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(UpgradeActivity.this, TileBreakerActivity.class);
+                TileBreakerActivity.upgrade = false;
                 finish();
+                startActivity(intent);
             }
         });
     }
@@ -42,7 +47,13 @@ public class UpgradeActivity extends Activity {
     //-------------------------------------------------------
 
     private void saveUpgrades() {
-        return;
+        //store upgrade values (all of them)
+        SharedPreferences.Editor pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
+
+        pref.putBoolean("Lightening", true);
+        pref.commit();
+        //UpgradeActivity.this.finish();
+
     }
 
     //-------------------------------------------------------
