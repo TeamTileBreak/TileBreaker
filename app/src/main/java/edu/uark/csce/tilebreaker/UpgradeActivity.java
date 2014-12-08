@@ -199,7 +199,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                     //stuff
                     break;
                 case DragEvent.ACTION_DRAG_ENTERED:
-                    //v.setBackground(getResources().getDrawable(R.drawable.gre_btn));
+                    v.setBackground(getResources().getDrawable(R.drawable.gre_btn));
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     if (v == findViewById(R.id.inventory1))
