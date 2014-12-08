@@ -31,7 +31,7 @@ public class PauseDialogFragment extends DialogFragment{
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Cash: $"+score)
-                .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Main Menu", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Intent it = new Intent(mActivity, MainActivity.class);
@@ -49,18 +49,7 @@ public class PauseDialogFragment extends DialogFragment{
                         //TileBreakerActivity.finish();
                     }
                 })
-                .setTitle("Paused")
-                .setNeutralButton("Upgrade", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent it = new Intent(mActivity, UpgradeActivity.class);
-                        TileBreakerActivity.paused = false;
-                        dialog.dismiss();
-                        mActivity.finish();
-                        startActivity(it);
-
-                    }
-                });
+                .setTitle("Paused");
         // Create the AlertDialog object and return it
         AlertDialog temp = builder.create();
         temp.setCanceledOnTouchOutside(false);
