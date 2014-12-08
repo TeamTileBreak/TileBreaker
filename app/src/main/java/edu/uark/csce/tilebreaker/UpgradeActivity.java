@@ -13,6 +13,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -216,7 +217,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                     if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
                             Log.d("DRAGGED_VIEW", vie.toString());
                             Log.d("DESTINATION_VIEW", "View = " + v.toString());
-                        if(score >=10) {
+                        if(score >=100) {
                             v.setBackground(vie.getBackground());
                             if (v == findViewById(R.id.inventory1))
                                 currentInv1 = v.getBackground();
@@ -228,10 +229,13 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                             v.invalidate();
                             vie.invalidate();
                             Log.d("TAG", v.toString() + " tag = " + v.getTag());
-                            score -= 10;
+                            score -= 100;
                             TextView scoreText = (TextView) findViewById(R.id.creditsView);
                             scoreText.setText("$" + score);
                             return true;
+                        } else{
+                            //Toast.setGravity(Gravity.TOP, 0, 0)
+                            Toast.makeText(getApplicationContext(),"Not enough Cash! Each upgrade costs: $100",Toast.LENGTH_LONG).show();
                         }
                     } else {
                         vie.setVisibility(View.VISIBLE);
