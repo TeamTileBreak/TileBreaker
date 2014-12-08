@@ -25,7 +25,7 @@ import android.widget.RelativeLayout;
 public class UpgradeActivity extends Activity {
 
     public static final String PREF_NAME = "myPrefsFile";
-    private ImageButton ug1,ug2,ug3,ug4,ug5,ug6,ug7,ug8,ug9;
+    public ImageButton ug1,ug2,ug3,ug4,ug5,ug6,ug7,ug8,ug9;
     private ImageView inventory1, inventory2, inventory3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,47 +33,50 @@ public class UpgradeActivity extends Activity {
         setContentView(R.layout.activity_upgrade);
 
         ug1 = (ImageButton)findViewById(R.id.ug1);
-            ug1.setTag("UG1");
-            ug1.setOnLongClickListener(new UpgradeClickListener());
+        ug1.setTag("UG1");
+        ug1.setOnLongClickListener(new UpgradeClickListener());
 
         ug2 = (ImageButton)findViewById(R.id.ug2);
-            ug2.setTag("UG2");
-            ug2.setOnLongClickListener(new UpgradeClickListener());
+        ug2.setTag("UG2");
+        ug2.setOnLongClickListener(new UpgradeClickListener());
 
         ug3 = (ImageButton)findViewById(R.id.ug3);
-            ug3.setTag("UG3");
-            ug3.setOnLongClickListener(new UpgradeClickListener());
+        ug3.setTag("UG3");
+        ug3.setOnLongClickListener(new UpgradeClickListener());
 
         ug4 = (ImageButton)findViewById(R.id.ug4);
-            ug4.setTag("UG4");
-            ug4.setOnLongClickListener(new UpgradeClickListener());
+        ug4.setTag("UG4");
+        ug4.setOnLongClickListener(new UpgradeClickListener());
 
         ug5 = (ImageButton)findViewById(R.id.ug5);
-            ug5.setTag("UG5");
-            ug5.setOnLongClickListener(new UpgradeClickListener());
+        ug5.setTag("UG5");
+        ug5.setOnLongClickListener(new UpgradeClickListener());
 
         ug6 = (ImageButton)findViewById(R.id.ug6);
-            ug6.setTag("UG6");
-            ug6.setOnLongClickListener(new UpgradeClickListener());
+        ug6.setTag("UG6");
+        ug6.setOnLongClickListener(new UpgradeClickListener());
 
         ug7 = (ImageButton)findViewById(R.id.ug7);
-            ug7.setTag("UG7");
-            ug7.setOnLongClickListener(new UpgradeClickListener());
+        ug7.setTag("UG7");
+        ug7.setOnLongClickListener(new UpgradeClickListener());
 
         ug8 = (ImageButton)findViewById(R.id.ug8);
-            ug8.setTag("UG8");
-            ug8.setOnLongClickListener(new UpgradeClickListener());
+        ug8.setTag("UG8");
+        ug8.setOnLongClickListener(new UpgradeClickListener());
 
         ug9 = (ImageButton)findViewById(R.id.ug9);
-            ug9.setTag("UG9");
-            ug9.setOnLongClickListener(new UpgradeClickListener());
+        ug9.setTag("UG9");
+        ug9.setOnLongClickListener(new UpgradeClickListener());
 
         inventory1 = (ImageView)findViewById(R.id.inventory1);
-            inventory1.setOnDragListener(new UpgradeDragListener());
+        inventory1.setTag("inv1");
+        inventory1.setOnDragListener(new UpgradeDragListener());
         inventory2 = (ImageView)findViewById(R.id.inventory2);
-            inventory2.setOnDragListener(new UpgradeDragListener());
+        inventory2.setTag("inv2");
+        inventory2.setOnDragListener(new UpgradeDragListener());
         inventory3 = (ImageView)findViewById(R.id.inventory3);
-            inventory3.setOnDragListener(new UpgradeDragListener());
+        inventory3.setTag("inv3");
+        inventory3.setOnDragListener(new UpgradeDragListener());
 
 
         //X BUTTON LISTENER
@@ -178,7 +181,38 @@ public class UpgradeActivity extends Activity {
         //store upgrade values (all of them)
         SharedPreferences.Editor pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
 
-        pref.putBoolean("Lightening", true);
+        ImageView ug1 = (ImageView) findViewById(R.id.inventory1);
+        ImageView ug2 = (ImageView) findViewById(R.id.inventory2);
+        ImageView ug3 = (ImageView) findViewById(R.id.inventory3);
+        String UG1 = ug1.getTag().toString();
+        //Log.i("UG1", UG1);
+        String UG2 = ug2.getTag().toString();
+        String UG3 = ug3.getTag().toString();
+
+        if(UG1.equals("UG1")||UG2.equals("UG1")||UG3.equals("UG1"))
+            pref.putBoolean("doubleBall", true);
+        else if(UG1.equals("UG2")||UG2.equals("UG2")||UG3.equals("UG2"))
+            pref.putBoolean("shotgunBall", true);
+        else if(UG1.equals("UG3")||UG2.equals("UG3")||UG3.equals("UG3"))
+            pref.putBoolean("flameThrower", true);
+        else if(UG1.equals("UG4")||UG2.equals("UG4")||UG3.equals("UG4"))
+            pref.putBoolean("extendedPaddle", true);
+        else if(UG1.equals("UG5")||UG2.equals("UG5")||UG3.equals("UG5"))
+            pref.putBoolean("laserShot", true);
+        else if(UG1.equals("UG6")||UG2.equals("UG6")||UG3.equals("UG6"))
+            pref.putBoolean("net", true);
+        else if(UG1.equals("UG7")||UG2.equals("UG7")||UG3.equals("UG7"))
+            pref.putBoolean("doubleDamageBall", true);
+        else if(UG1.equals("UG8")||UG2.equals("UG8")||UG3.equals("UG8"))
+            pref.putBoolean("turrets", true);
+        else if(UG1.equals("UG9")||UG2.equals("UG9")||UG3.equals("UG9"))
+            pref.putBoolean("stickyPaddle", true);
+        else{
+            pref.putBoolean("isFalse", false);
+        }
+
+
+        //pref.putBoolean("Lightening", true);
         pref.commit();
         //UpgradeActivity.this.finish();
 
