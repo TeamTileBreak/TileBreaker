@@ -51,6 +51,9 @@ public class MainActivity extends Activity {
         pref.putBoolean("turrets", false);
         pref.putBoolean("stickyPaddle", false);
         pref.commit();
+        
+        String xtra  = "1";
+        intent.putExtra("newGame", xtra);
         MainActivity.this.finish();
         startActivity(intent);
     }

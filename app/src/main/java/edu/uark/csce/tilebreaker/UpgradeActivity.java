@@ -94,8 +94,8 @@ public class UpgradeActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(UpgradeActivity.this, MainActivity.class);
                 TileBreakerActivity.upgrade = false;
-                finish();
                 startActivity(intent);
+                finish();
             }
         });
         //CHECK BUTTON LISTENER
@@ -158,29 +158,29 @@ public class UpgradeActivity extends Activity {
                     if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
                         Log.d("DRAGGED_VIEW",vie.toString());
                         Log.d("DESTINATION_VIEW","View = " + v.toString());
-                        if(score >= 1){
-                            v.setBackground(vie.getBackground());
-                            if (v == findViewById(R.id.inventory1))
-                                currentInv1 = v.getBackground();
-                            else if (v == findViewById(R.id.inventory2))
-                                currentInv2 = v.getBackground();
-                            else if (v == findViewById(R.id.inventory3))
-                                currentInv3 = v.getBackground();
-                            Log.d("TAG",v.toString() + " tag = " + v.getTag());
-                            v.setTag(vie.getTag());
-                            v.invalidate();
-                            vie.invalidate();
-                            score -= 1;
-                            TextView scoreText = (TextView)findViewById(R.id.creditsView);
-                            scoreText.setText("$"+score);
-
-                            return true;
-                        }
+                        v.setBackground(vie.getBackground());
+                        if (v == findViewById(R.id.inventory1))
+                            currentInv1 = v.getBackground();
+                        else if (v == findViewById(R.id.inventory2))
+                            currentInv2 = v.getBackground();
+                        else if (v == findViewById(R.id.inventory3))
+                            currentInv3 = v.getBackground();
+                        v.setTag(vie.getTag());
+                        v.invalidate();
+                        vie.invalidate();
+                        Log.d("TAG",v.toString() + " tag = " + v.getTag());
+                        return true;
                     } else {
                         vie.setVisibility(View.VISIBLE);
                         return false;
                     }
                 case DragEvent.ACTION_DRAG_ENDED:
+                    if (v == findViewById(R.id.inventory1))
+                        v.setBackground(currentInv1);
+                    else if (v == findViewById(R.id.inventory2))
+                        v.setBackground(currentInv2);
+                    else if (v == findViewById(R.id.inventory3))
+                        v.setBackground(currentInv3);
                     break;
                 default:
                     break;
@@ -232,6 +232,9 @@ public class UpgradeActivity extends Activity {
             pref.putBoolean("turrets", true);
         if(UG1.equals("UG9")||UG2.equals("UG9")||UG3.equals("UG9"))
             pref.putBoolean("stickyPaddle", true);
+        //else{
+        //    pref.putBoolean("isFalse", false);
+        //}
 
 
         //pref.putBoolean("Lightening", true);
