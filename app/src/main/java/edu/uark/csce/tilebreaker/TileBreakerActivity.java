@@ -161,11 +161,11 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                         if(ball.tempBall){
                             balls.remove(i);
                             i--;
-                            score++;
+                            score+=10;
                         }else if(ball.doubleDamage){
-                            score+=2;
+                            score+=20;
                         }else{
-                            score++;
+                            score+=10;
                         }
                     } else if (retval == -1) {
                         if(net){
