@@ -214,20 +214,25 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                 case DragEvent.ACTION_DROP:
                     View vie = (View) event.getLocalState();
                     if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
-                        Log.d("DRAGGED_VIEW",vie.toString());
-                        Log.d("DESTINATION_VIEW","View = " + v.toString());
-                        v.setBackground(vie.getBackground());
-                        if (v == findViewById(R.id.inventory1))
-                            currentInv1 = v.getBackground();
-                        else if (v == findViewById(R.id.inventory2))
-                            currentInv2 = v.getBackground();
-                        else if (v == findViewById(R.id.inventory3))
-                            currentInv3 = v.getBackground();
-                        v.setTag(vie.getTag());
-                        v.invalidate();
-                        vie.invalidate();
-                        Log.d("TAG",v.toString() + " tag = " + v.getTag());
-                        return true;
+                            Log.d("DRAGGED_VIEW", vie.toString());
+                            Log.d("DESTINATION_VIEW", "View = " + v.toString());
+                        if(score >=10) {
+                            v.setBackground(vie.getBackground());
+                            if (v == findViewById(R.id.inventory1))
+                                currentInv1 = v.getBackground();
+                            else if (v == findViewById(R.id.inventory2))
+                                currentInv2 = v.getBackground();
+                            else if (v == findViewById(R.id.inventory3))
+                                currentInv3 = v.getBackground();
+                            v.setTag(vie.getTag());
+                            v.invalidate();
+                            vie.invalidate();
+                            Log.d("TAG", v.toString() + " tag = " + v.getTag());
+                            score -= 10;
+                            TextView scoreText = (TextView) findViewById(R.id.creditsView);
+                            scoreText.setText("$" + score);
+                            return true;
+                        }
                     } else {
                         vie.setVisibility(View.VISIBLE);
                         return false;
