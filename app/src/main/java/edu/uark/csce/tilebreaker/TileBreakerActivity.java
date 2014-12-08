@@ -444,7 +444,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            x -= (int) event.values[0] * 8;
+            x -= (int) event.values[0] * 6;
 
             if (x < 0) {
                 x = 0;
