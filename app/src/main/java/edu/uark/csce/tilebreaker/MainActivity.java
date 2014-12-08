@@ -2,6 +2,7 @@ package edu.uark.csce.tilebreaker;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,18 @@ public class MainActivity extends Activity {
 
     public void playGame(View view) {
         Intent intent = new Intent(this, TileBreakerActivity.class);
+        SharedPreferences.Editor pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE).edit();
+        pref.putInt("score",0);
+        pref.putBoolean("doubleBall", false);
+        pref.putBoolean("shotgunBall", false);
+        pref.putBoolean("flameThrower", false);
+        pref.putBoolean("extendedPaddle", false);
+        pref.putBoolean("laserShot", false);
+        pref.putBoolean("net", false);
+        pref.putBoolean("doubleDamageBall", false);
+        pref.putBoolean("turrets", false);
+        pref.putBoolean("stickyPaddle", false);
+        pref.commit();
         MainActivity.this.finish();
         startActivity(intent);
     }

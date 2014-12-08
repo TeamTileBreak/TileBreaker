@@ -58,7 +58,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     public static boolean laserShot = false;
     public static boolean flameThrower = false;
     public static boolean turrets = false;
-    public static boolean stickyPaddle = true;
+    public static boolean stickyPaddle = false;
     private MyView view;
     public static int x;
     private SensorManager sensorManager;
@@ -88,6 +88,8 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         stickyPaddle = false;
         stickyPaddle = pref.getBoolean("UG9", false);
 
+        score = pref.getInt("score",score);
+
         view = new MyView(this);
         setContentView(view);
         paused = false;
@@ -104,6 +106,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                     }
                 }else{
                     onScreenTouch(touchX, touchY);
+                    x = touchX;
                 }
                 if(event.getAction() == android.view.MotionEvent.ACTION_UP){
                     onScreenRelease();
@@ -287,6 +290,9 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                 }
             }
             if(!alive) {
+                SharedPreferences.Editor pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE).edit();
+                pref.putInt("score",score);
+                pref.commit();
                 chooseUpgrade(this);
             }else {
 
