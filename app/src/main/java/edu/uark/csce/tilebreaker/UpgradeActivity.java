@@ -154,8 +154,8 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             float speed = Math.abs(a-b) / diffTime * 10000;
 
             //register shake, reset upgrade slots
-            if (speed > 2000) {
-                //Log.d("sensor", "shake detected w/ speed: " + speed);
+            if (speed > 2500) {
+                Log.d("sensor", "shake detected w/ speed: " + speed);
                 Intent i = new Intent(UpgradeActivity.this,UpgradeActivity.class);
                 finish();
                 startActivity(i);
