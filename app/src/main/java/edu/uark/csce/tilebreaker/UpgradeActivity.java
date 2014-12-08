@@ -129,9 +129,11 @@ public class UpgradeActivity extends Activity {
                 case DragEvent.ACTION_DRAG_STARTED:
                     //stuff
                     break;
+                //drop space entered, basically an onhover case to set the drop zone green
                 case DragEvent.ACTION_DRAG_ENTERED:
                     v.setBackground(getResources().getDrawable(R.drawable.gre_btn));
                     break;
+                //drop space exited, revert the view back to whatever it was before
                 case DragEvent.ACTION_DRAG_EXITED:
                     if (v == findViewById(R.id.inventory1))
                         v.setBackground(currentInv1);
@@ -145,19 +147,33 @@ public class UpgradeActivity extends Activity {
                 case DragEvent.ACTION_DROP:
                     View vie = (View) event.getLocalState();
                     if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
-                        Log.d("DRAGGED_VIEW",vie.toString());
-                        Log.d("DESTINATION_VIEW","View = " + v.toString());
-                        v.setBackground(vie.getBackground());
-                        if (v == findViewById(R.id.inventory1))
-                            currentInv1 = v.getBackground();
-                        else if (v == findViewById(R.id.inventory2))
-                            currentInv2 = v.getBackground();
-                        else if (v == findViewById(R.id.inventory3))
-                            currentInv3 = v.getBackground();
-                        v.setTag(vie.getTag());
-                        v.invalidate();
-                        vie.invalidate();
-                        Log.d("TAG",v.toString() + " tag = " + v.getTag());
+                        //Log.d("DRAGGED_VIEW",vie.toString());
+                        //Log.d("DESTINATION_VIEW","View = " + v.toString());
+                        //vie.setVisibility(View.INVISIBLE);",
+                        Log.d("BG_Check", "CurrentInv1 = " + currentInv1.toString());
+                        Log.d("BG_Check", "CurrentInv2 = " + currentInv2.toString());
+                        Log.d("BG_Check", "CurrentInv3 = " + currentInv3.toString());
+                        Log.d("ThisBG", "vie.getBackground() = " + vie.getBackground().toString());
+                        if (v == findViewById(R.id.inventory1)) {
+                            //if (currentInv2 != vie.getBackground() && currentInv3 != vie.getBackground()) {
+                                v.setBackground(vie.getBackground());
+                                currentInv1 = v.getBackground();
+                                v.setTag(vie.getTag());
+                            //}
+                        } else if (v == findViewById(R.id.inventory2)) {
+                            //if (currentInv1 != vie.getBackground() && currentInv3 != vie.getBackground()) {
+                                v.setBackground(vie.getBackground());
+                                currentInv2 = v.getBackground();
+                                v.setTag(vie.getTag());
+                            //}
+                        } else if (v == findViewById(R.id.inventory3)) {
+                            //if (currentInv1 != vie.getBackground() && currentInv2 != vie.getBackground()) {
+                                v.setBackground(vie.getBackground());
+                                currentInv3 = v.getBackground();
+                                v.setTag(vie.getTag());
+                            //}
+                        }
+                        //Log.d("TAG",v.toString() + " tag = " + v.getTag());
                         return true;
                     } else {
                         vie.setVisibility(View.VISIBLE);
