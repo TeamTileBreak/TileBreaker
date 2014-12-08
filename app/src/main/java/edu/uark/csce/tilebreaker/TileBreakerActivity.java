@@ -34,6 +34,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
 
     public static boolean paused = false;
     public static boolean upgrade = false;
+    public static boolean doubleBall, shotgunBall, flameThrower, extendedPaddle, net, doubleDamageBall, laserShot, turrets, stickyPaddle;
     private MyView view;
     public static int x;
     private SensorManager sensorManager;
@@ -44,8 +45,26 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         super.onCreate(savedInstanceState);
 
         SharedPreferences pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE);
-        boolean Lightening = pref.getBoolean("Lightening",false);
-        Log.i("Lightening", String.valueOf(Lightening));
+        doubleBall = false;
+        doubleBall = pref.getBoolean("doubleBall", false);
+        shotgunBall = false;
+        shotgunBall = pref.getBoolean("shotgunBall", false);
+        flameThrower = false;
+        flameThrower = pref.getBoolean("flameThrower", false);
+        extendedPaddle = false;
+        extendedPaddle = pref.getBoolean("extendedPaddle", false);
+        net = false;
+        net = pref.getBoolean("net", false);
+        doubleDamageBall = false;
+        doubleDamageBall = pref.getBoolean("doubleDamageBall", false);
+        laserShot = false;
+        laserShot = pref.getBoolean("laserShot", false);
+        turrets = false;
+        turrets = pref.getBoolean("turrets", false);
+        stickyPaddle = false;
+        stickyPaddle = pref.getBoolean("UG9", false);
+
+        //Log.i("Lightening", String.valueOf(Upgrade1));
 
         view = new MyView(this);
         setContentView(view);
@@ -218,7 +237,6 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-
             x -= (int) event.values[0] * 8;
 
             if (x < 0) {
@@ -226,7 +244,6 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
             } else if (x > view.screenWidth) {
                 x = view.screenWidth;
             }
-
         }
     }
 
