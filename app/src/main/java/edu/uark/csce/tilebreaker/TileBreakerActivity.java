@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.graphics.Point;
-import android.os.Build;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -14,26 +12,14 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Display;
-import android.view.DragEvent;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import android.support.v4.app.FragmentActivity;
+
 import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
 import edu.uark.csce.tilebreaker.util.SystemUiHider;
 
