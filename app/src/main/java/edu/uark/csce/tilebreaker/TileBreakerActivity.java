@@ -36,7 +36,6 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     public static boolean upgrade = false;
     private MyView view;
     public static int x;
-    public static int y;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     /** Called when the activity is first created. */
@@ -220,8 +219,13 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 
-            x -= (int) event.values[0];
-            y += (int) event.values[1];
+            x -= (int) event.values[0] * 8;
+
+            if (x < 0) {
+                x = 0;
+            } else if (x > view.screenWidth) {
+                x = view.screenWidth;
+            }
 
         }
     }
