@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.graphics.Point;
-import android.os.Build;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -14,26 +12,14 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Display;
-import android.view.DragEvent;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import android.support.v4.app.FragmentActivity;
+
 import edu.uark.csce.tilebreaker.util.PauseDialogFragment;
 import edu.uark.csce.tilebreaker.util.SystemUiHider;
 
@@ -71,9 +57,10 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         super.onCreate(savedInstanceState);
 
         newGame = getIntent().getStringExtra("newGame");
+        SharedPreferences pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE);
+        score = pref.getInt("score",score);
         //no newgame flag from main activity, so load
         if(newGame == null) {
-            SharedPreferences pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE);
             doubleBall = pref.getBoolean("doubleBall", false);
             shotgunBall = pref.getBoolean("shotgunBall", false);
             flameThrower = pref.getBoolean("flameThrower", false);
@@ -95,10 +82,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
             stickyPaddle = false;
             turrets = false;
         }
-
-
-
-
+        
 
         view = new MyView(this);
         setContentView(view);
@@ -116,6 +100,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                     }
                 } else {
                     onScreenTouch(touchX, touchY);
+                    x = touchX;
                 }
                 if(event.getAction() == android.view.MotionEvent.ACTION_UP){
                     onScreenRelease();
@@ -299,6 +284,9 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                 }
             }
             if(!alive) {
+                SharedPreferences.Editor pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE).edit();
+                pref.putInt("score",score);
+                pref.commit();
                 chooseUpgrade(this);
             }else {
 
