@@ -111,7 +111,7 @@ public class UpgradeActivity extends Activity {
             DragShadowBuilder shadowBuilder = new DragShadowBuilder(view);
 
             view.startDrag(data,shadowBuilder,view,0);
-            view.setVisibility(View.INVISIBLE);
+            //view.setVisibility(View.INVISIBLE);
             return true;
         }
     }
