@@ -6,6 +6,10 @@ import android.content.ClipDescription;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -21,14 +25,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-public class UpgradeActivity extends Activity {
+public class UpgradeActivity extends Activity implements SensorEventListener {
 
     public static final String PREF_NAME = "myPrefsFile";
     public Button ug1,ug2,ug3,ug4,ug5,ug6,ug7,ug8,ug9;
     public int score;
     private ImageView inventory1, inventory2, inventory3;
+    private SensorManager sensorManager;
+    private Sensor accelerometer;
+    private static long lastUpdate = 0;
+    private static float last_x = 0;
+    private static float last_y = 0;
+    private static float last_z = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +121,53 @@ public class UpgradeActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accelerometer = sensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+    }
+
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        long curTime = System.currentTimeMillis();
+
+        if (lastUpdate == 0)
+            lastUpdate = System.currentTimeMillis();
+        // only allow one update every 100ms.
+        if ((curTime - lastUpdate) > 100) {
+            long diffTime = (curTime - lastUpdate);
+            lastUpdate = curTime;
+
+            float a = sensorEvent.values[0] + sensorEvent.values[1] + sensorEvent.values[2];
+            float b = last_x-last_y-last_z;
+            float speed = Math.abs(a-b) / diffTime * 10000;
+
+            //register shake, reset upgrade slots
+            if (speed > 2000) {
+                //Log.d("sensor", "shake detected w/ speed: " + speed);
+                Intent i = new Intent(UpgradeActivity.this,UpgradeActivity.class);
+                finish();
+                startActivity(i);
+            }
+            last_x = sensorEvent.values[0];
+            last_y = sensorEvent.values[1];
+            last_z = sensorEvent.values[2];
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
 
