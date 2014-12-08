@@ -26,19 +26,19 @@ public class Block {
     }
 
     public void paint(Paint paint, Canvas canvas){
-        color = healthColors[health-1];
+        color = healthColors[health - 1];
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(color);
         canvas.drawRect((int)Math.round(lx), (int)Math.round(ty), (int)Math.round(rx), (int)Math.round(by), paint);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(healthOutLineColors[health-1]);
+        paint.setColor(healthOutLineColors[health - 1]);
         paint.setStrokeWidth(3.0f);
         canvas.drawRect((int)Math.round(lx)+1, (int)Math.round(ty)+1, (int)Math.round(rx)-1, (int)Math.round(by)-1, paint);
     }
 
     public void update() {
-        this.ty+=0.25;
-        this.by+=0.25;
+        this.ty+=0.3;
+        this.by+=0.3;
     }
 
     public void hit(){

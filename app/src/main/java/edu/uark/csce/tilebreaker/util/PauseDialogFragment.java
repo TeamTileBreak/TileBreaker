@@ -19,6 +19,7 @@ import edu.uark.csce.tilebreaker.UpgradeActivity;
 public class PauseDialogFragment extends DialogFragment{
 
     Activity mActivity;
+    public int score;
 
     public PauseDialogFragment(Activity activity){
         super();
@@ -29,7 +30,7 @@ public class PauseDialogFragment extends DialogFragment{
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Score: 12324")
+        builder.setMessage("Score: "+score)
                 .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
