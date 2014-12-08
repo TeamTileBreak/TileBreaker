@@ -91,34 +91,29 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/relativeLayout">
 
-        <TextView
+        <ImageView
             android:id="@+id/inventory2"
             android:background="@drawable/empty_upgrade_slot"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-
-
-            android:text="@string/empty_upgrade_slot"
             android:gravity="center"
             android:textSize="20dp"
         />
 
-        <TextView
+        <ImageView
             android:id="@+id/inventory1"
             android:background="@drawable/empty_upgrade_slot"
-            android:layout_width="100sp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_toLeftOf="@id/inventory2"
             android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
-
-            android:text="@string/empty_upgrade_slot"
             android:gravity="center"
             android:textSize="20dp"
         />
 
-        <TextView
+        <ImageView
             android:id="@+id/inventory3"
             android:background="@drawable/empty_upgrade_slot"
             android:layout_width="100dp"
@@ -126,15 +121,13 @@
             android:layout_toRightOf="@id/inventory2"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
-
-            android:text="@string/empty_upgrade_slot"
             android:gravity="center"
             android:textSize="20dp"
             />
     </RelativeLayout>
 
     <ImageButton
-        android:src="@drawable/upgrade_extended_platform"
+        android:background="@drawable/upgrade_extended_platform"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -143,7 +136,7 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
-        android:src="@drawable/upgrade_multiball"
+        android:background="@drawable/upgrade_multiball"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -153,7 +146,7 @@
         android:layout_marginRight="20dp"/>
 
     <ImageButton
-        android:src="@drawable/upgrade_slow_time"
+        android:background="@drawable/upgrade_slow_time"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -163,7 +156,7 @@
         android:layout_marginLeft="20dp" />
 
     <ImageButton
-        android:src="@drawable/upgrade_freeze"
+        android:background="@drawable/upgrade_freeze"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -172,7 +165,7 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
-        android:src="@drawable/upgrade_exploding_bricks"
+        android:background="@drawable/upgrade_exploding_bricks"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -182,7 +175,7 @@
         android:layout_marginTop="220dp"/>
 
     <ImageButton
-        android:src="@drawable/upgrade_net"
+        android:background="@drawable/upgrade_net"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -192,7 +185,7 @@
         android:layout_marginTop="220dp" />
 
     <ImageButton
-        android:src="@drawable/upgrade_reverse_gravity"
+        android:background="@drawable/upgrade_reverse_gravity"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -201,7 +194,7 @@
         android:layout_marginTop="340dp"/>
 
     <ImageButton
-        android:src="@drawable/upgrade_mega_ball"
+        android:background="@drawable/upgrade_mega_ball"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -211,7 +204,7 @@
         android:layout_marginTop="340dp"/>
 
     <ImageButton
-        android:src="@drawable/upgrade_nuke"
+        android:background="@drawable/upgrade_nuke"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
