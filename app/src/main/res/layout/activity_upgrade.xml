@@ -40,7 +40,7 @@
         android:id="@+id/creditsView" />
 
     <!--X Button-->
-    <ImageButton
+    <Button
         android:id="@+id/xBtn"
         android:background="@drawable/upgradexbtn"
         android:layout_width="50dp"
@@ -50,7 +50,7 @@
 
     <!--Trash Button-->
 <!--
-    <ImageButton
+    <Button
         android:background="@drawable/upgradetrashbtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -60,7 +60,7 @@
     />
 -->
     <!--Save Changes (Check) Button-->
-    <ImageButton
+    <Button
         android:id="@+id/checkBtn"
         android:background="@drawable/upgradecheckbtn"
         android:layout_width="50dp"
@@ -72,7 +72,7 @@
 
     <!--Floppy Disk (Save) Button-->
 <!--
-    <ImageButton
+    <Button
         android:background="@drawable/upgradesavebtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -126,16 +126,26 @@
             />
     </RelativeLayout>
 
-    <ImageButton
-        android:background="@drawable/upgrade_extended_platform"
+    <Button
+        android:background="@drawable/upgrade_shotgun"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug2"
         android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Shotgun"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2">
+    </Button>
 
-    <ImageButton
+    <Button
         android:background="@drawable/upgrade_multiball"
         android:scaleType="fitXY"
         android:layout_width="100dp"
@@ -143,38 +153,74 @@
         android:id="@+id/ug1"
         android:layout_toLeftOf="@id/ug2"
         android:layout_marginTop="100dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginRight="20dp"
+        android:text="Double Ball"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 
-    <ImageButton
-        android:background="@drawable/upgrade_slow_time"
+    <Button
+        android:background="@drawable/upgrade_hellfire"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug3"
         android:layout_toRightOf="@id/ug2"
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginLeft="20dp"
+        android:text="Hellfire"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 
-    <ImageButton
-        android:background="@drawable/upgrade_freeze"
+    <Button
+        android:background="@drawable/upgrade_lasers"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug5"
         android:layout_marginTop="220dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Lasers"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 
-    <ImageButton
-        android:background="@drawable/upgrade_exploding_bricks"
+    <Button
+        android:background="@drawable/upgrade_extended_platform"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug4"
         android:layout_toLeftOf="@id/ug5"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="220dp"/>
+        android:layout_marginTop="220dp"
+        android:text="Long Paddle"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 
-    <ImageButton
+    <Button
         android:background="@drawable/upgrade_net"
         android:scaleType="fitXY"
         android:layout_width="100dp"
@@ -182,34 +228,70 @@
         android:id="@+id/ug6"
         android:layout_toRightOf="@id/ug5"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="220dp" />
+        android:layout_marginTop="220dp"
+        android:text="Net"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 
-    <ImageButton
-        android:background="@drawable/upgrade_reverse_gravity"
+    <Button
+        android:background="@drawable/upgrade_turret"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug8"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="340dp"/>
+        android:layout_marginTop="340dp"
+        android:text="Turret"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 
-    <ImageButton
-        android:background="@drawable/upgrade_mega_ball"
+    <Button
+        android:background="@drawable/upgrade_double_damage"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug7"
         android:layout_toLeftOf="@id/ug8"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="340dp"/>
+        android:layout_marginTop="340dp"
+        android:text="2X Damage"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 
-    <ImageButton
-        android:background="@drawable/upgrade_nuke"
+    <Button
+        android:background="@drawable/upgrade_sticky_paddle"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug9"
         android:layout_toRightOf="@id/ug8"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="340dp"/>
+        android:layout_marginTop="340dp"
+        android:text="Sticky Paddle"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
 </RelativeLayout>

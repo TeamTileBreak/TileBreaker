@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
 import android.widget.ImageView;
@@ -26,7 +26,7 @@ import android.widget.TextView;
 public class UpgradeActivity extends Activity {
 
     public static final String PREF_NAME = "myPrefsFile";
-    public ImageButton ug1,ug2,ug3,ug4,ug5,ug6,ug7,ug8,ug9;
+    public Button ug1,ug2,ug3,ug4,ug5,ug6,ug7,ug8,ug9;
     public int score;
     private ImageView inventory1, inventory2, inventory3;
     @Override
@@ -40,39 +40,39 @@ public class UpgradeActivity extends Activity {
         TextView scoreText = (TextView)findViewById(R.id.creditsView);
         scoreText.setText("$"+score);
 
-        ug1 = (ImageButton)findViewById(R.id.ug1);
+        ug1 = (Button)findViewById(R.id.ug1);
         ug1.setTag("UG1");
         ug1.setOnLongClickListener(new UpgradeClickListener());
 
-        ug2 = (ImageButton)findViewById(R.id.ug2);
+        ug2 = (Button)findViewById(R.id.ug2);
         ug2.setTag("UG2");
         ug2.setOnLongClickListener(new UpgradeClickListener());
 
-        ug3 = (ImageButton)findViewById(R.id.ug3);
+        ug3 = (Button)findViewById(R.id.ug3);
         ug3.setTag("UG3");
         ug3.setOnLongClickListener(new UpgradeClickListener());
 
-        ug4 = (ImageButton)findViewById(R.id.ug4);
+        ug4 = (Button)findViewById(R.id.ug4);
         ug4.setTag("UG4");
         ug4.setOnLongClickListener(new UpgradeClickListener());
 
-        ug5 = (ImageButton)findViewById(R.id.ug5);
+        ug5 = (Button)findViewById(R.id.ug5);
         ug5.setTag("UG5");
         ug5.setOnLongClickListener(new UpgradeClickListener());
 
-        ug6 = (ImageButton)findViewById(R.id.ug6);
+        ug6 = (Button)findViewById(R.id.ug6);
         ug6.setTag("UG6");
         ug6.setOnLongClickListener(new UpgradeClickListener());
 
-        ug7 = (ImageButton)findViewById(R.id.ug7);
+        ug7 = (Button)findViewById(R.id.ug7);
         ug7.setTag("UG7");
         ug7.setOnLongClickListener(new UpgradeClickListener());
 
-        ug8 = (ImageButton)findViewById(R.id.ug8);
+        ug8 = (Button)findViewById(R.id.ug8);
         ug8.setTag("UG8");
         ug8.setOnLongClickListener(new UpgradeClickListener());
 
-        ug9 = (ImageButton)findViewById(R.id.ug9);
+        ug9 = (Button)findViewById(R.id.ug9);
         ug9.setTag("UG9");
         ug9.setOnLongClickListener(new UpgradeClickListener());
 
@@ -88,7 +88,7 @@ public class UpgradeActivity extends Activity {
 
 
         //X BUTTON LISTENER
-        ImageButton xBtn = (ImageButton) findViewById(R.id.xBtn);
+        Button xBtn = (Button) findViewById(R.id.xBtn);
         xBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +99,7 @@ public class UpgradeActivity extends Activity {
             }
         });
         //CHECK BUTTON LISTENER
-        ImageButton checkBtn = (ImageButton) findViewById(R.id.checkBtn);
+        Button checkBtn = (Button) findViewById(R.id.checkBtn);
         checkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
