@@ -16,18 +16,22 @@ public class Ball {
     //Color is an int
     int color;
 
+    boolean tempBall = false;
+    boolean doubleDamage = false;
+    int stickyPaddleOffset = 0;
+
     public Ball(int x,int paddleTY,int screenWidth,int screenHeight){
         color = Color.BLACK;
         this.x = x;
         this.y = paddleTY-this.r-1;
-        this.xvel = 6;
-        this.yvel = -6;
+        this.xvel = 9;
+        this.yvel = -9;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
     }
 
-    //Returns true if the ball is alive, false if it died
-    public boolean update(Paddle paddle,ArrayList<Block> blocks){
+    //Returns 1 if the ball hit a block, 0 if nothing happened, -1 if it died
+    public int update(Paddle paddle,ArrayList<Block> blocks){
 
         boolean collidedWithBlock = checkBlockCollisions(blocks);
         //Ball is hitting a side
@@ -41,8 +45,8 @@ public class Ball {
         //Ball is hitting paddle height
         if (y >= paddle.ty - r) {
             //Is ball hitting paddle?
-            if (x >= paddle.lx && x <= paddle.rx) {
-                this.xvel = (x - paddle.x) * 6.0 / (paddle.width / 2.0);
+            if (x >= paddle.lx && x <= paddle.rx && y < paddle.by) {
+                this.xvel = (x - paddle.x) * 9.0 / (paddle.width / 2.0);
                 if (this.xvel >= 0.0 && this.xvel <= 0.5) {
                     this.xvel = 0.5;
                 }else if(this.xvel <= 0.0 && this.xvel >= -0.51){
@@ -50,9 +54,15 @@ public class Ball {
                 }
                 this.yvel = -Math.abs(yvel);
                 this.y = paddle.ty-r-1;
+                return 2;
             } else {
-                return false;
+                this.x = (int) Math.round(x + xvel);
+                this.y = (int) Math.round(y + yvel);
+                return -1;
             }
+        }
+        if(this.yvel == 0){
+            this.x = paddle.x+stickyPaddleOffset;
         }
         //ball is hitting top of screen
         else if (y <= r) {
@@ -62,8 +72,10 @@ public class Ball {
         if(!collidedWithBlock) {
             this.x = (int) Math.round(x + xvel);
             this.y = (int) Math.round(y + yvel);
+        }else{
+            return 1;
         }
-        return true;
+        return 0;
     }
 
     private boolean checkBlockCollisions(ArrayList<Block> blocks){
@@ -122,9 +134,15 @@ public class Ball {
             }
             if(collidedWithBlock){
                 block.hit();
-                if(block.health == 0){
+                if(doubleDamage && !tempBall){
+                    block.hit();
+                }
+                if(block.health <= 0){
                     blocks.remove(i);
                     i--;
+                }
+                if(tempBall){
+                    return true;
                 }
             }
         }
@@ -152,6 +170,9 @@ public class Ball {
     public void paint(Paint paint, Canvas canvas){
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(color);
+        if(doubleDamage){
+            paint.setColor(Color.RED);
+        }
         canvas.drawCircle(x, y, r, paint);
     }
 }
