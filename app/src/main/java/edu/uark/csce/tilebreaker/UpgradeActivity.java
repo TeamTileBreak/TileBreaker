@@ -216,24 +216,22 @@ public class UpgradeActivity extends Activity {
 
         if(UG1.equals("UG1")||UG2.equals("UG1")||UG3.equals("UG1"))
             pref.putBoolean("doubleBall", true);
-        else if(UG1.equals("UG2")||UG2.equals("UG2")||UG3.equals("UG2"))
+        if(UG1.equals("UG2")||UG2.equals("UG2")||UG3.equals("UG2"))
             pref.putBoolean("shotgunBall", true);
-        else if(UG1.equals("UG3")||UG2.equals("UG3")||UG3.equals("UG3"))
+        if(UG1.equals("UG3")||UG2.equals("UG3")||UG3.equals("UG3"))
             pref.putBoolean("flameThrower", true);
-        else if(UG1.equals("UG4")||UG2.equals("UG4")||UG3.equals("UG4"))
+        if(UG1.equals("UG4")||UG2.equals("UG4")||UG3.equals("UG4"))
             pref.putBoolean("extendedPaddle", true);
-        else if(UG1.equals("UG5")||UG2.equals("UG5")||UG3.equals("UG5"))
+        if(UG1.equals("UG5")||UG2.equals("UG5")||UG3.equals("UG5"))
             pref.putBoolean("laserShot", true);
-        else if(UG1.equals("UG6")||UG2.equals("UG6")||UG3.equals("UG6"))
+        if(UG1.equals("UG6")||UG2.equals("UG6")||UG3.equals("UG6"))
             pref.putBoolean("net", true);
-        else if(UG1.equals("UG7")||UG2.equals("UG7")||UG3.equals("UG7"))
+        if(UG1.equals("UG7")||UG2.equals("UG7")||UG3.equals("UG7"))
             pref.putBoolean("doubleDamageBall", true);
-        else if(UG1.equals("UG8")||UG2.equals("UG8")||UG3.equals("UG8"))
+        if(UG1.equals("UG8")||UG2.equals("UG8")||UG3.equals("UG8"))
             pref.putBoolean("turrets", true);
-        else if(UG1.equals("UG9")||UG2.equals("UG9")||UG3.equals("UG9"))
+        if(UG1.equals("UG9")||UG2.equals("UG9")||UG3.equals("UG9"))
             pref.putBoolean("stickyPaddle", true);
-        else
-            pref.putBoolean("stickyPaddle", false);
         //else{
         //    pref.putBoolean("isFalse", false);
         //}
