@@ -58,7 +58,9 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     public static boolean laserShot = false;
     public static boolean flameThrower = false;
     public static boolean turrets = false;
-    public static boolean stickyPaddle = true;
+    public static boolean stickyPaddle = false;
+
+    public static String newGame = null;
     private MyView view;
     public static int x;
     private SensorManager sensorManager;
@@ -68,25 +70,35 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE);
-        doubleBall = false;
-        doubleBall = pref.getBoolean("doubleBall", false);
-        shotgunBall = false;
-        shotgunBall = pref.getBoolean("shotgunBall", false);
-        flameThrower = false;
-        flameThrower = pref.getBoolean("flameThrower", false);
-        extendedPaddle = false;
-        extendedPaddle = pref.getBoolean("extendedPaddle", false);
-        net = false;
-        net = pref.getBoolean("net", false);
-        doubleDamageBall = false;
-        doubleDamageBall = pref.getBoolean("doubleDamageBall", false);
-        laserShot = false;
-        laserShot = pref.getBoolean("laserShot", false);
-        turrets = false;
-        turrets = pref.getBoolean("turrets", false);
-        stickyPaddle = false;
-        stickyPaddle = pref.getBoolean("UG9", false);
+        newGame = getIntent().getStringExtra("newGame");
+        //no newgame flag from main activity, so load
+        if(newGame == null) {
+            SharedPreferences pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE);
+            doubleBall = pref.getBoolean("doubleBall", false);
+            shotgunBall = pref.getBoolean("shotgunBall", false);
+            flameThrower = pref.getBoolean("flameThrower", false);
+            extendedPaddle = pref.getBoolean("extendedPaddle", false);
+            net = pref.getBoolean("net", false);
+            doubleDamageBall = pref.getBoolean("doubleDamageBall", false);
+            laserShot = pref.getBoolean("laserShot", false);
+            turrets = pref.getBoolean("turrets", false);
+            stickyPaddle = pref.getBoolean("UG9", false);
+        //newgame flag from main, so clear all upgrades
+        } else {
+            doubleBall = false;
+            shotgunBall = false;
+            flameThrower = false;
+            extendedPaddle = false;
+            net = false;
+            doubleDamageBall = false;
+            laserShot = false;
+            stickyPaddle = false;
+            turrets = false;
+        }
+
+
+
+
 
         view = new MyView(this);
         setContentView(view);
@@ -102,7 +114,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                         pauseGame(v);
                         paused = true;
                     }
-                }else{
+                } else {
                     onScreenTouch(touchX, touchY);
                 }
                 if(event.getAction() == android.view.MotionEvent.ACTION_UP){
@@ -418,7 +430,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
 
     public void chooseUpgrade(View view) {
         Intent intent = new Intent(this, UpgradeActivity.class);
-
+        TileBreakerActivity.this.finish();
         startActivity(intent);
     }
 

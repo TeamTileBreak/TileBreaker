@@ -38,6 +38,8 @@ public class MainActivity extends Activity {
 
     public void playGame(View view) {
         Intent intent = new Intent(this, TileBreakerActivity.class);
+        String xtra  = "1";
+        intent.putExtra("newGame", xtra);
         MainActivity.this.finish();
         startActivity(intent);
     }

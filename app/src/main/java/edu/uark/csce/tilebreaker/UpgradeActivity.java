@@ -167,6 +167,12 @@ public class UpgradeActivity extends Activity {
                         return false;
                     }
                 case DragEvent.ACTION_DRAG_ENDED:
+                    if (v == findViewById(R.id.inventory1))
+                        v.setBackground(currentInv1);
+                    else if (v == findViewById(R.id.inventory2))
+                        v.setBackground(currentInv2);
+                    else if (v == findViewById(R.id.inventory3))
+                        v.setBackground(currentInv3);
                     break;
                 default:
                     break;
@@ -191,25 +197,51 @@ public class UpgradeActivity extends Activity {
 
         if(UG1.equals("UG1")||UG2.equals("UG1")||UG3.equals("UG1"))
             pref.putBoolean("doubleBall", true);
-        else if(UG1.equals("UG2")||UG2.equals("UG2")||UG3.equals("UG2"))
+        else
+            pref.putBoolean("doubleBall", false);
+
+        if(UG1.equals("UG2")||UG2.equals("UG2")||UG3.equals("UG2"))
             pref.putBoolean("shotgunBall", true);
-        else if(UG1.equals("UG3")||UG2.equals("UG3")||UG3.equals("UG3"))
+        else
+            pref.putBoolean("shotgunBall", false);
+
+        if(UG1.equals("UG3")||UG2.equals("UG3")||UG3.equals("UG3"))
             pref.putBoolean("flameThrower", true);
-        else if(UG1.equals("UG4")||UG2.equals("UG4")||UG3.equals("UG4"))
+        else
+            pref.putBoolean("flameThrower", false);
+
+        if(UG1.equals("UG4")||UG2.equals("UG4")||UG3.equals("UG4"))
             pref.putBoolean("extendedPaddle", true);
-        else if(UG1.equals("UG5")||UG2.equals("UG5")||UG3.equals("UG5"))
+        else
+            pref.putBoolean("extendedPaddle", false);
+
+        if(UG1.equals("UG5")||UG2.equals("UG5")||UG3.equals("UG5"))
             pref.putBoolean("laserShot", true);
-        else if(UG1.equals("UG6")||UG2.equals("UG6")||UG3.equals("UG6"))
+        else
+            pref.putBoolean("laserShot", false);
+
+        if(UG1.equals("UG6")||UG2.equals("UG6")||UG3.equals("UG6"))
             pref.putBoolean("net", true);
-        else if(UG1.equals("UG7")||UG2.equals("UG7")||UG3.equals("UG7"))
+        else
+            pref.putBoolean("net", false);
+
+        if(UG1.equals("UG7")||UG2.equals("UG7")||UG3.equals("UG7"))
             pref.putBoolean("doubleDamageBall", true);
-        else if(UG1.equals("UG8")||UG2.equals("UG8")||UG3.equals("UG8"))
+        else
+            pref.putBoolean("doubleDamageBall", false);
+
+        if(UG1.equals("UG8")||UG2.equals("UG8")||UG3.equals("UG8"))
             pref.putBoolean("turrets", true);
-        else if(UG1.equals("UG9")||UG2.equals("UG9")||UG3.equals("UG9"))
+        else
+            pref.putBoolean("turrets", false);
+
+        if(UG1.equals("UG9")||UG2.equals("UG9")||UG3.equals("UG9"))
             pref.putBoolean("stickyPaddle", true);
-        else{
-            pref.putBoolean("isFalse", false);
-        }
+        else
+            pref.putBoolean("stickyPaddle", false);
+        //else{
+        //    pref.putBoolean("isFalse", false);
+        //}
 
 
         //pref.putBoolean("Lightening", true);
