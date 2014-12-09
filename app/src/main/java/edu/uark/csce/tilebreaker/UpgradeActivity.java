@@ -55,11 +55,11 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
         upgrades.add(new Upgrade("NONE","NONE",0));
         upgrades.add(new Upgrade("net", "Net", 100));
         upgrades.add(new Upgrade("extendedPaddle", "Long Paddle", 100));
-        upgrades.add(new Upgrade("stickyPaddle", "Sticky Paddle", 250));
-        upgrades.add(new Upgrade("turrets", "Turret", 250));
+        upgrades.add(new Upgrade("stickyPaddle", "Sticky Paddle", 100));
+        upgrades.add(new Upgrade("turrets", "Turret", 500));
         upgrades.add(new Upgrade("doubleBall", "Double Ball", 500));
         upgrades.add(new Upgrade("laserShot", "Lasers", 500));
-        upgrades.add(new Upgrade("doubleDamageBall", "2X Damage", 750));
+        upgrades.add(new Upgrade("doubleDamageBall", "2X Damage", 1000));
         upgrades.add(new Upgrade("shotgunBall", "Shotgun", 1000));
         upgrades.add(new Upgrade("flameThrower", "Hellfire", 1000));
 
