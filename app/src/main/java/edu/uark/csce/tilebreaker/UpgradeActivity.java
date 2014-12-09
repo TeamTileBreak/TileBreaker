@@ -23,109 +23,101 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class UpgradeActivity extends Activity implements SensorEventListener {
 
     public static final String PREF_NAME = "myPrefsFile";
-    public Button ug1,ug2,ug3,ug4,ug5,ug6,ug7,ug8,ug9;
     public int score;
-    private ImageView inventory1, inventory2, inventory3;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private static long lastUpdate = 0;
     private static float last_x = 0;
     private static float last_y = 0;
     private static float last_z = 0;
+    Drawable emptyUpgradeSlot;
+    ArrayList<Drawable> currentInventoryBackgrounds;
+    ArrayList<Upgrade> upgrades;
+    ArrayList<Button> upgradeBtns;
+    ArrayList<ImageView> inventory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade);
+
+        upgrades = new ArrayList<Upgrade>();
+        upgradeBtns = new ArrayList<Button>();
+        inventory = new ArrayList<ImageView>();
+
+        //add each upgrade
+        upgrades.add(new Upgrade("NONE","NONE",0));
+        upgrades.add(new Upgrade("net", "Net", 100));
+        upgrades.add(new Upgrade("extendedPaddle", "Long Paddle", 100));
+        upgrades.add(new Upgrade("stickyPaddle", "Sticky Paddle", 250));
+        upgrades.add(new Upgrade("turrets", "Turret", 250));
+        upgrades.add(new Upgrade("doubleBall", "Double Ball", 500));
+        upgrades.add(new Upgrade("laserShot", "Lasers", 500));
+        upgrades.add(new Upgrade("doubleDamageBall", "2X Damage", 750));
+        upgrades.add(new Upgrade("shotgunBall", "Shotgun", 1000));
+        upgrades.add(new Upgrade("flameThrower", "Hellfire", 1000));
+
 
         SharedPreferences pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE);
         score = pref.getInt("score",score);
 
         TextView scoreText = (TextView)findViewById(R.id.creditsView);
         scoreText.setText("$"+score);
+        upgradeBtns.add((Button)findViewById(R.id.ug5));
+        for (int i = 1; i < 10; i++) {
+            String id = "ug"+i;
+            int resid = getResources().getIdentifier (id, "id", getPackageName());
+            upgradeBtns.add((Button)findViewById(resid));
+            upgradeBtns.get(i).setTag(upgrades.get(i));
+            upgradeBtns.get(i).setOnLongClickListener(new UpgradeClickListener());
+        }
 
-        //upgrade icons, set tag & listener
-        ug1 = (Button)findViewById(R.id.ug1);
-        ug1.setTag("UG1");
-        ug1.setOnLongClickListener(new UpgradeClickListener());
 
-        ug2 = (Button)findViewById(R.id.ug2);
-        ug2.setTag("UG2");
-        ug2.setOnLongClickListener(new UpgradeClickListener());
 
-        ug3 = (Button)findViewById(R.id.ug3);
-        ug3.setTag("UG3");
-        ug3.setOnLongClickListener(new UpgradeClickListener());
+        //define empty upgrade slot, initialize all current inventory backgrounds to empty
+        emptyUpgradeSlot = getResources().getDrawable(R.drawable.empty_upgrade_slot);
+        currentInventoryBackgrounds = new ArrayList<Drawable>();
+        for (int i = 0; i < 4; i++) {
+            currentInventoryBackgrounds.add(emptyUpgradeSlot);
+        }
 
-        ug4 = (Button)findViewById(R.id.ug4);
-        ug4.setTag("UG4");
-        ug4.setOnLongClickListener(new UpgradeClickListener());
+        //defining inventory views
+        inventory.add((ImageView)findViewById(R.id.inventory1));
+        for (int i = 1; i < 4; i++) {
+            final String id = "inventory"+i;
+            int resid = getResources().getIdentifier (id, "id", getPackageName());
+            inventory.add((ImageView)findViewById(resid));
+            inventory.get(i).setTag(upgrades.get(0));
+            inventory.get(i).setBackground(emptyUpgradeSlot);
+            inventory.get(i).setOnDragListener(new UpgradeDragListener());
+            //if click on inventory item, clear that item from inventory
+            inventory.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Upgrade upgrade = (Upgrade)view.getTag();
+                    score += upgrade.getCost();
 
-        ug5 = (Button)findViewById(R.id.ug5);
-        ug5.setTag("UG5");
-        ug5.setOnLongClickListener(new UpgradeClickListener());
+                    if (view == inventory.get(1))
+                        currentInventoryBackgrounds.set(1,emptyUpgradeSlot);
+                    else if (view == inventory.get(2))
+                        currentInventoryBackgrounds.set(2,emptyUpgradeSlot);
+                    else if (view == inventory.get(3))
+                        currentInventoryBackgrounds.set(3,emptyUpgradeSlot);
 
-        ug6 = (Button)findViewById(R.id.ug6);
-        ug6.setTag("UG6");
-        ug6.setOnLongClickListener(new UpgradeClickListener());
+                    view.setBackground(emptyUpgradeSlot);
+                    view.setTag(upgrades.get(0));
 
-        ug7 = (Button)findViewById(R.id.ug7);
-        ug7.setTag("UG7");
-        ug7.setOnLongClickListener(new UpgradeClickListener());
-
-        ug8 = (Button)findViewById(R.id.ug8);
-        ug8.setTag("UG8");
-        ug8.setOnLongClickListener(new UpgradeClickListener());
-
-        ug9 = (Button)findViewById(R.id.ug9);
-        ug9.setTag("UG9");
-        ug9.setOnLongClickListener(new UpgradeClickListener());
-
-        //inventory slots, set tag and listener
-        inventory1 = (ImageView)findViewById(R.id.inventory1);
-        inventory1.setTag("inv1");
-        inventory1.setOnDragListener(new UpgradeDragListener());
-        inventory2 = (ImageView)findViewById(R.id.inventory2);
-        inventory2.setTag("inv2");
-        inventory2.setOnDragListener(new UpgradeDragListener());
-        inventory3 = (ImageView)findViewById(R.id.inventory3);
-        inventory3.setTag("inv3");
-        inventory3.setOnDragListener(new UpgradeDragListener());
-
-        inventory1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.setBackground(getResources().getDrawable(R.drawable.empty_upgrade_slot));
-                view.setTag("inv1");
-                score += 1000;
-                TextView scoreText = (TextView) findViewById(R.id.creditsView);
-                scoreText.setText("$" + score);
-            }
-        });
-        inventory2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.setBackground(getResources().getDrawable(R.drawable.empty_upgrade_slot));
-                view.setTag("inv2");
-                score += 1000;
-                TextView scoreText = (TextView) findViewById(R.id.creditsView);
-                scoreText.setText("$" + score);
-            }
-        });
-        inventory3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.setBackground(getResources().getDrawable(R.drawable.empty_upgrade_slot));
-                view.setTag("inv3");
-                score += 1000;
-                TextView scoreText = (TextView) findViewById(R.id.creditsView);
-                scoreText.setText("$" + score);
-            }
-        });
-
+                    TextView scoreText = (TextView) findViewById(R.id.creditsView);
+                    scoreText.setText("$" + score);
+                }
+            });
+        }
 
         //X BUTTON LISTENER
         Button xBtn = (Button) findViewById(R.id.xBtn);
@@ -205,9 +197,10 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
     private final class UpgradeClickListener implements View.OnLongClickListener {
         @Override
         public boolean onLongClick(View view) {
-            ClipData.Item item = new ClipData.Item((CharSequence)view.getTag());
+            Upgrade upgrade = (Upgrade)view.getTag();
+            ClipData.Item item = new ClipData.Item((String)upgrade.getName());
             String[] mimeTypes = { ClipDescription.MIMETYPE_TEXT_PLAIN };
-            ClipData data = new ClipData(view.getTag().toString(), mimeTypes, item);
+            ClipData data = new ClipData(upgrade.getName(), mimeTypes, item);
             DragShadowBuilder shadowBuilder = new DragShadowBuilder(view);
 
             view.startDrag(data,shadowBuilder,view,0);
@@ -218,50 +211,60 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
 
     class UpgradeDragListener implements OnDragListener {
 
-        Drawable upgradeSlot = getResources().getDrawable(R.drawable.empty_upgrade_slot);
-        Drawable currentInv1Background = upgradeSlot;
-        Drawable currentInv2Background = upgradeSlot;
-        Drawable currentInv3Background = upgradeSlot;
+
 
         @Override
         public boolean onDrag(View v, DragEvent event) {
+
             switch (event.getAction()) {
                 case DragEvent.ACTION_DRAG_ENTERED:
                     v.setBackground(getResources().getDrawable(R.drawable.gre_btn));
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     //dont keep any green backgrounds
-                    if (v == findViewById(R.id.inventory1))
-                        v.setBackground(currentInv1Background);
-                    else if (v == findViewById(R.id.inventory2))
-                        v.setBackground(currentInv2Background);
-                    else if (v == findViewById(R.id.inventory3))
-                        v.setBackground(currentInv3Background);
+                    if (v == inventory.get(1))
+                        v.setBackground(currentInventoryBackgrounds.get(1));
+                    else if (v == inventory.get(2))
+                        v.setBackground(currentInventoryBackgrounds.get(2));
+                    else if (v == inventory.get(3))
+                        v.setBackground(currentInventoryBackgrounds.get(3));
                     //View view = (View) event.getLocalState();
                     //v.setBackground(view.getBackground());
                     break;
                 case DragEvent.ACTION_DROP:
                     View vie = (View) event.getLocalState();
-                    if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
-                            Log.d("DRAGGED_VIEW", vie.toString());
-                            Log.d("DESTINATION_VIEW", "View = " + v.toString());
-                        //no money
-                        if(score < 1000) {
-                            Toast.makeText(getApplicationContext(),"Not enough Cash! Each upgrade costs: $1000",Toast.LENGTH_LONG).show();
-                        //already selected this upgrade
-                        } else if (inventory1.getTag() == vie.getTag() || inventory2.getTag() == vie.getTag() || inventory3.getTag() == vie.getTag()){
-                            //if not putting same upgrade in the same slot
+
+                    Boolean alreadySelected = false;
+                    for (int i = 1; i < 4; i++) {
+                        if (inventory.get(i).getTag() == vie.getTag()) {
                             if (v.getTag() != vie.getTag())
-                                Toast.makeText(getApplicationContext(),"Duplicate Upgrades not allowed! Please choose another",Toast.LENGTH_LONG).show();
+                                alreadySelected = true;
+                        }
+                    }
+
+                    //if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
+                    if (inventory.contains(v)) {
+                            //Log.d("DRAGGED_VIEW", vie.toString());
+                            //Log.d("DESTINATION_VIEW", "View = " + v.toString());
+                        Upgrade newUpgrade = (Upgrade)vie.getTag();
+                        Upgrade oldUpgrade = (Upgrade)v.getTag();
+                        //no money
+                        if(score < newUpgrade.getCost()) {
+                            Toast.makeText(getApplicationContext(), "Not enough Cash! " + newUpgrade.getDisplayName() + " costs $" + newUpgrade.getCost(), Toast.LENGTH_LONG).show();
+                            //already selected this upgrade
+                            //} else if (inventory1.getTag() == vie.getTag() || inventory2.getTag() == vie.getTag() || inventory3.getTag() == vie.getTag()){
+                        } else if (alreadySelected) {
+                            Toast.makeText(getApplicationContext(),"Duplicate Upgrades not allowed! Please choose another",Toast.LENGTH_LONG).show();
                         //good
                         } else {
+                            score += oldUpgrade.getCost();
                             v.setBackground(vie.getBackground());
-                            if (v == findViewById(R.id.inventory1))
-                                currentInv1Background = v.getBackground();
-                            else if (v == findViewById(R.id.inventory2))
-                                currentInv2Background = v.getBackground();
-                            else if (v == findViewById(R.id.inventory3))
-                                currentInv3Background = v.getBackground();
+                            if (v == inventory.get(1))
+                                currentInventoryBackgrounds.set(1, v.getBackground());
+                            else if (v == inventory.get(2))
+                                currentInventoryBackgrounds.set(2, v.getBackground());
+                            else if (v == inventory.get(3))
+                                currentInventoryBackgrounds.set(3, v.getBackground());
                             v.setTag(vie.getTag());
 
                             //force redraw of view and drop view
@@ -269,7 +272,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                             vie.invalidate();
 
                             //Log.d("TAG", v.toString() + " tag = " + v.getTag());
-                            score -= 1000;
+                            score -= newUpgrade.getCost();
                             TextView scoreText = (TextView) findViewById(R.id.creditsView);
                             scoreText.setText("$" + score);
                             return true;
@@ -280,12 +283,12 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                     }
                 case DragEvent.ACTION_DRAG_ENDED:
                     //dont keep any green backgrounds
-                    if (v == findViewById(R.id.inventory1))
-                        v.setBackground(currentInv1Background);
-                    else if (v == findViewById(R.id.inventory2))
-                        v.setBackground(currentInv2Background);
-                    else if (v == findViewById(R.id.inventory3))
-                        v.setBackground(currentInv3Background);
+                    if (v == inventory.get(1))
+                        v.setBackground(currentInventoryBackgrounds.get(1));
+                    else if (v == inventory.get(2))
+                        v.setBackground(currentInventoryBackgrounds.get(2));
+                    else if (v == inventory.get(3))
+                        v.setBackground(currentInventoryBackgrounds.get(3));
                     break;
                 default:
                     break;
@@ -297,50 +300,17 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
     //-------------------------------------------------------
 
     private void saveUpgrades() {
-        //store upgrade values (all of them)
         SharedPreferences.Editor pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
 
-        ImageView ug1 = (ImageView) findViewById(R.id.inventory1);
-        ImageView ug2 = (ImageView) findViewById(R.id.inventory2);
-        ImageView ug3 = (ImageView) findViewById(R.id.inventory3);
-
-        String UG1 = ug1.getTag().toString();
-        String UG2 = ug2.getTag().toString();
-        String UG3 = ug3.getTag().toString();
-
-        //Log.i("UG1", UG1);
-
-        pref.putBoolean("doubleBall", false);
-        pref.putBoolean("shotgunBall", false);
-        pref.putBoolean("flameThrower", false);
-        pref.putBoolean("extendedPaddle", false);
-        pref.putBoolean("laserShot", false);
-        pref.putBoolean("net", false);
-        pref.putBoolean("doubleDamageBall", false);
-        pref.putBoolean("turrets", false);
-        pref.putBoolean("stickyPaddle", false);
-        pref.putInt("score",score);
-
-
-        if(UG1.equals("UG1")||UG2.equals("UG1")||UG3.equals("UG1"))
-            pref.putBoolean("doubleBall", true);
-        if(UG1.equals("UG2")||UG2.equals("UG2")||UG3.equals("UG2"))
-            pref.putBoolean("shotgunBall", true);
-        if(UG1.equals("UG3")||UG2.equals("UG3")||UG3.equals("UG3"))
-            pref.putBoolean("flameThrower", true);
-        if(UG1.equals("UG4")||UG2.equals("UG4")||UG3.equals("UG4"))
-            pref.putBoolean("extendedPaddle", true);
-        if(UG1.equals("UG5")||UG2.equals("UG5")||UG3.equals("UG5"))
-            pref.putBoolean("laserShot", true);
-        if(UG1.equals("UG6")||UG2.equals("UG6")||UG3.equals("UG6"))
-            pref.putBoolean("net", true);
-        if(UG1.equals("UG7")||UG2.equals("UG7")||UG3.equals("UG7"))
-            pref.putBoolean("doubleDamageBall", true);
-        if(UG1.equals("UG8")||UG2.equals("UG8")||UG3.equals("UG8"))
-            pref.putBoolean("turrets", true);
-        if(UG1.equals("UG9")||UG2.equals("UG9")||UG3.equals("UG9"))
-            pref.putBoolean("stickyPaddle", true);
-
+        for (int i = 1; i < 10; i++) {
+            pref.putBoolean(upgrades.get(i).getName(),false);
+            for (int j = 1; j < 4; j++) {
+                Upgrade u = (Upgrade)inventory.get(j).getTag();
+                if (u == upgrades.get(i))
+                    pref.putBoolean(upgrades.get(i).getName(), true);
+            }
+            pref.putInt("score",score);
+        }
         pref.commit();
 
     }
