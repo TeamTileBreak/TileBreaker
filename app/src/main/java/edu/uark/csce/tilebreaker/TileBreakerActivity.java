@@ -389,7 +389,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         private void onTouch(int touchX, int touchY){
             paddle.update(touchX);
             //unregisterListener();
-            //onPause();
+            //unregister();
         }
 
         private void onRelease(){
@@ -421,7 +421,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         df.show(getSupportFragmentManager(), "fragment_alert");
 
         // Stops listening to accelerometer
-        sensorManager.unregisterListener(this);
+        unregister();
     }
 
     public void chooseUpgrade(View view) {
@@ -444,7 +444,6 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this);
     }
 
 
