@@ -13,18 +13,13 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -155,7 +150,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             float speed = Math.abs(a-b) / diffTime * 10000;
 
             //register shake, reset upgrade slots
-            if (speed > 2500) {
+            if (speed > 3000) {
                 Log.d("sensor", "shake detected w/ speed: " + speed);
                 Intent i = new Intent(UpgradeActivity.this,UpgradeActivity.class);
                 finish();
