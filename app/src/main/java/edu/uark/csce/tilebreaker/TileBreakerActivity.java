@@ -286,6 +286,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                 }
             }
             if(!alive) {
+                unregister();
                 SharedPreferences.Editor pref = getSharedPreferences(UpgradeActivity.PREF_NAME,MODE_PRIVATE).edit();
                 pref.putInt("score",score);
                 pref.commit();
@@ -427,6 +428,10 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         Intent intent = new Intent(this, UpgradeActivity.class);
         TileBreakerActivity.this.finish();
         startActivity(intent);
+    }
+
+    public void unregister() {
+        sensorManager.unregisterListener(this);
     }
 
     @Override
