@@ -18,17 +18,16 @@
         </activity>
         <activity
             android:name=".TileBreakerActivity"
+            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_tile_breaker"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".PauseActivity"
-            android:label="@string/title_activity_pause" >
-        </activity>
-        <activity
             android:name=".UpgradeActivity"
-            android:label="@string/title_activity_upgrade" >
+            android:label="@string/title_activity_upgrade"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
     </application>
 
