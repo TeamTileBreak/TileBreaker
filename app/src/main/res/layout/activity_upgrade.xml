@@ -127,14 +127,14 @@
     </RelativeLayout>
 
     <Button
-        android:background="@drawable/upgrade_shotgun"
+        android:background="@drawable/upgrade_extended_platform"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug2"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:text="Shotgun"
+        android:text="Long Paddle"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -146,7 +146,7 @@
     </Button>
 
     <Button
-        android:background="@drawable/upgrade_multiball"
+        android:background="@drawable/upgrade_net"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -154,7 +154,7 @@
         android:layout_toLeftOf="@id/ug2"
         android:layout_marginTop="100dp"
         android:layout_marginRight="20dp"
-        android:text="Double Ball"
+        android:text="Net"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -165,7 +165,7 @@
         android:shadowDx="2"/>
 
     <Button
-        android:background="@drawable/upgrade_hellfire"
+        android:background="@drawable/upgrade_sticky_paddle"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -173,7 +173,7 @@
         android:layout_toRightOf="@id/ug2"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="20dp"
-        android:text="Hellfire"
+        android:text="Sticky Paddle"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -184,52 +184,14 @@
         android:shadowDx="2"/>
 
     <Button
-        android:background="@drawable/upgrade_lasers"
+        android:background="@drawable/upgrade_multiball"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/ug5"
         android:layout_marginTop="220dp"
         android:layout_centerHorizontal="true"
-        android:text="Lasers"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:shadowColor="#cf0000"
-        android:shadowRadius="2"
-        android:shadowDy="2"
-        android:shadowDx="2"/>
-
-    <Button
-        android:background="@drawable/upgrade_extended_platform"
-        android:scaleType="fitXY"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/ug4"
-        android:layout_toLeftOf="@id/ug5"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="220dp"
-        android:text="Long Paddle"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:shadowColor="#cf0000"
-        android:shadowRadius="2"
-        android:shadowDy="2"
-        android:shadowDx="2"/>
-
-    <Button
-        android:background="@drawable/upgrade_net"
-        android:scaleType="fitXY"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/ug6"
-        android:layout_toRightOf="@id/ug5"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="220dp"
-        android:text="Net"
+        android:text="Double Ball"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -244,10 +206,48 @@
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:id="@+id/ug4"
+        android:layout_toLeftOf="@id/ug5"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="220dp"
+        android:text="Turret"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
+
+    <Button
+        android:background="@drawable/upgrade_lasers"
+        android:scaleType="fitXY"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ug6"
+        android:layout_toRightOf="@id/ug5"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="220dp"
+        android:text="Lasers"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:shadowColor="#cf0000"
+        android:shadowRadius="2"
+        android:shadowDy="2"
+        android:shadowDx="2"/>
+
+    <Button
+        android:background="@drawable/upgrade_shotgun"
+        android:scaleType="fitXY"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/ug8"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="340dp"
-        android:text="Turret"
+        android:text="Shotgun"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -277,7 +277,7 @@
         android:shadowDx="2"/>
 
     <Button
-        android:background="@drawable/upgrade_sticky_paddle"
+        android:background="@drawable/upgrade_hellfire"
         android:scaleType="fitXY"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -285,7 +285,7 @@
         android:layout_toRightOf="@id/ug8"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="340dp"
-        android:text="Sticky Paddle"
+        android:text="Hellfire"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
