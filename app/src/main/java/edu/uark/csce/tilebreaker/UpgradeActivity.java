@@ -47,6 +47,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
         TextView scoreText = (TextView)findViewById(R.id.creditsView);
         scoreText.setText("$"+score);
 
+        //upgrade icons, set tag & listener
         ug1 = (Button)findViewById(R.id.ug1);
         ug1.setTag("UG1");
         ug1.setOnLongClickListener(new UpgradeClickListener());
@@ -83,6 +84,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
         ug9.setTag("UG9");
         ug9.setOnLongClickListener(new UpgradeClickListener());
 
+        //inventory slots, set tag and listener
         inventory1 = (ImageView)findViewById(R.id.inventory1);
         inventory1.setTag("inv1");
         inventory1.setOnDragListener(new UpgradeDragListener());
@@ -98,7 +100,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             public void onClick(View view) {
                 view.setBackground(getResources().getDrawable(R.drawable.empty_upgrade_slot));
                 view.setTag("inv1");
-                score += 100;
+                score += 1000;
                 TextView scoreText = (TextView) findViewById(R.id.creditsView);
                 scoreText.setText("$" + score);
             }
@@ -108,7 +110,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             public void onClick(View view) {
                 view.setBackground(getResources().getDrawable(R.drawable.empty_upgrade_slot));
                 view.setTag("inv2");
-                score += 100;
+                score += 1000;
                 TextView scoreText = (TextView) findViewById(R.id.creditsView);
                 scoreText.setText("$" + score);
             }
@@ -118,7 +120,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             public void onClick(View view) {
                 view.setBackground(getResources().getDrawable(R.drawable.empty_upgrade_slot));
                 view.setTag("inv3");
-                score += 100;
+                score += 1000;
                 TextView scoreText = (TextView) findViewById(R.id.creditsView);
                 scoreText.setText("$" + score);
             }
@@ -136,6 +138,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                 finish();
             }
         });
+
         //CHECK BUTTON LISTENER
         Button checkBtn = (Button) findViewById(R.id.checkBtn);
         checkBtn.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +152,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             }
         });
 
+        //define accelerometer
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -168,7 +172,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         long curTime = System.currentTimeMillis();
-
+        //listen for screen shake
         if (lastUpdate == 0)
             lastUpdate = System.currentTimeMillis();
         // only allow one update every 100ms.
@@ -222,13 +226,11 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
         @Override
         public boolean onDrag(View v, DragEvent event) {
             switch (event.getAction()) {
-                case DragEvent.ACTION_DRAG_STARTED:
-                    //stuff
-                    break;
                 case DragEvent.ACTION_DRAG_ENTERED:
                     v.setBackground(getResources().getDrawable(R.drawable.gre_btn));
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
+                    //dont keep any green backgrounds
                     if (v == findViewById(R.id.inventory1))
                         v.setBackground(currentInv1Background);
                     else if (v == findViewById(R.id.inventory2))
@@ -244,10 +246,11 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                             Log.d("DRAGGED_VIEW", vie.toString());
                             Log.d("DESTINATION_VIEW", "View = " + v.toString());
                         //no money
-                        if(score < 100) {
-                            Toast.makeText(getApplicationContext(),"Not enough Cash! Each upgrade costs: $100",Toast.LENGTH_LONG).show();
+                        if(score < 1000) {
+                            Toast.makeText(getApplicationContext(),"Not enough Cash! Each upgrade costs: $1000",Toast.LENGTH_LONG).show();
                         //already selected this upgrade
                         } else if (inventory1.getTag() == vie.getTag() || inventory2.getTag() == vie.getTag() || inventory3.getTag() == vie.getTag()){
+                            //if not putting same upgrade in the same slot
                             if (v.getTag() != vie.getTag())
                                 Toast.makeText(getApplicationContext(),"Duplicate Upgrades not allowed! Please choose another",Toast.LENGTH_LONG).show();
                         //good
@@ -266,7 +269,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                             vie.invalidate();
 
                             //Log.d("TAG", v.toString() + " tag = " + v.getTag());
-                            score -= 100;
+                            score -= 1000;
                             TextView scoreText = (TextView) findViewById(R.id.creditsView);
                             scoreText.setText("$" + score);
                             return true;
@@ -276,6 +279,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                         return false;
                     }
                 case DragEvent.ACTION_DRAG_ENDED:
+                    //dont keep any green backgrounds
                     if (v == findViewById(R.id.inventory1))
                         v.setBackground(currentInv1Background);
                     else if (v == findViewById(R.id.inventory2))
