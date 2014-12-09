@@ -69,7 +69,9 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
 
         TextView scoreText = (TextView)findViewById(R.id.creditsView);
         scoreText.setText("$"+score);
-        upgradeBtns.add((Button)findViewById(R.id.ug5));
+
+        //define upgrade buttons, assign their upgrade object tags, set listeners
+        upgradeBtns.add((Button)findViewById(R.id.ug5)); //throw away value, were starting at 1
         for (int i = 1; i < 10; i++) {
             String id = "ug"+i;
             int resid = getResources().getIdentifier (id, "id", getPackageName());
@@ -78,8 +80,6 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             upgradeBtns.get(i).setOnLongClickListener(new UpgradeClickListener());
         }
 
-
-
         //define empty upgrade slot, initialize all current inventory backgrounds to empty
         emptyUpgradeSlot = getResources().getDrawable(R.drawable.empty_upgrade_slot);
         currentInventoryBackgrounds = new ArrayList<Drawable>();
@@ -87,8 +87,8 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             currentInventoryBackgrounds.add(emptyUpgradeSlot);
         }
 
-        //defining inventory views
-        inventory.add((ImageView)findViewById(R.id.inventory1));
+        //defining inventory views, initialize their upgrade object tag to null upgrade, set listeners
+        inventory.add((ImageView)findViewById(R.id.inventory1)); //throw away value, were starting at 1
         for (int i = 1; i < 4; i++) {
             final String id = "inventory"+i;
             int resid = getResources().getIdentifier (id, "id", getPackageName());
@@ -222,14 +222,10 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     //dont keep any green backgrounds
-                    if (v == inventory.get(1))
-                        v.setBackground(currentInventoryBackgrounds.get(1));
-                    else if (v == inventory.get(2))
-                        v.setBackground(currentInventoryBackgrounds.get(2));
-                    else if (v == inventory.get(3))
-                        v.setBackground(currentInventoryBackgrounds.get(3));
-                    //View view = (View) event.getLocalState();
-                    //v.setBackground(view.getBackground());
+                    for (int i = 1; i < 4; i++){
+                        if (v == inventory.get(i))
+                            v.setBackground(currentInventoryBackgrounds.get(i));
+                    }
                     break;
                 case DragEvent.ACTION_DROP:
                     View vie = (View) event.getLocalState();
@@ -242,7 +238,6 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                         }
                     }
 
-                    //if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
                     if (inventory.contains(v)) {
                             //Log.d("DRAGGED_VIEW", vie.toString());
                             //Log.d("DESTINATION_VIEW", "View = " + v.toString());
@@ -251,27 +246,24 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                         //no money
                         if(score < newUpgrade.getCost()) {
                             Toast.makeText(getApplicationContext(), "Not enough Cash! " + newUpgrade.getDisplayName() + " costs $" + newUpgrade.getCost(), Toast.LENGTH_LONG).show();
-                            //already selected this upgrade
-                            //} else if (inventory1.getTag() == vie.getTag() || inventory2.getTag() == vie.getTag() || inventory3.getTag() == vie.getTag()){
+                        //already selected this upgrade
                         } else if (alreadySelected) {
                             Toast.makeText(getApplicationContext(),"Duplicate Upgrades not allowed! Please choose another",Toast.LENGTH_LONG).show();
                         //good
                         } else {
+                            //give the user back their money for the upgrade that was there previously (0 if it was blank)
                             score += oldUpgrade.getCost();
                             v.setBackground(vie.getBackground());
-                            if (v == inventory.get(1))
-                                currentInventoryBackgrounds.set(1, v.getBackground());
-                            else if (v == inventory.get(2))
-                                currentInventoryBackgrounds.set(2, v.getBackground());
-                            else if (v == inventory.get(3))
-                                currentInventoryBackgrounds.set(3, v.getBackground());
+                            for (int i = 1; i < 4; i++) {
+                                if (v == inventory.get(i))
+                                    currentInventoryBackgrounds.set(i,v.getBackground());
+                            }
                             v.setTag(vie.getTag());
 
-                            //force redraw of view and drop view
+                            //force redraw of view
                             v.invalidate();
-                            vie.invalidate();
 
-                            //Log.d("TAG", v.toString() + " tag = " + v.getTag());
+                            //take the cost of the new upgrade from their bank account
                             score -= newUpgrade.getCost();
                             TextView scoreText = (TextView) findViewById(R.id.creditsView);
                             scoreText.setText("$" + score);
@@ -283,12 +275,10 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                     }
                 case DragEvent.ACTION_DRAG_ENDED:
                     //dont keep any green backgrounds
-                    if (v == inventory.get(1))
-                        v.setBackground(currentInventoryBackgrounds.get(1));
-                    else if (v == inventory.get(2))
-                        v.setBackground(currentInventoryBackgrounds.get(2));
-                    else if (v == inventory.get(3))
-                        v.setBackground(currentInventoryBackgrounds.get(3));
+                    for (int i = 1; i < 4; i++){
+                        if (v == inventory.get(i))
+                            v.setBackground(currentInventoryBackgrounds.get(i));
+                    }
                     break;
                 default:
                     break;
@@ -302,15 +292,17 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
     private void saveUpgrades() {
         SharedPreferences.Editor pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
 
-        for (int i = 1; i < 10; i++) {
-            pref.putBoolean(upgrades.get(i).getName(),false);
-            for (int j = 1; j < 4; j++) {
-                Upgrade u = (Upgrade)inventory.get(j).getTag();
-                if (u == upgrades.get(i))
-                    pref.putBoolean(upgrades.get(i).getName(), true);
-            }
-            pref.putInt("score",score);
+        //set all to false first
+        for (int i = 1; i < 10; i++)
+            pref.putBoolean(upgrades.get(i).getName(), false);
+
+        //set true the ones the user chose (empty will just set "NONE" to true, nbd)
+        for (int i = 1; i < 4; i++) {
+            Upgrade u = (Upgrade)inventory.get(i).getTag();
+            pref.putBoolean(u.getName(), true);
         }
+
+        pref.putInt("score",score);
         pref.commit();
 
     }
