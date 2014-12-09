@@ -71,7 +71,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
             doubleDamageBall = pref.getBoolean("doubleDamageBall", false);
             laserShot = pref.getBoolean("laserShot", false);
             turrets = pref.getBoolean("turrets", false);
-            stickyPaddle = pref.getBoolean("UG9", false);
+            stickyPaddle = pref.getBoolean("stickyPaddle", false);
         //newgame flag from main, so clear all upgrades
         } else {
             doubleBall = false;
