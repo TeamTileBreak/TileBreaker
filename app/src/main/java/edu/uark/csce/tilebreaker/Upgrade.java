@@ -24,7 +24,4 @@ public class Upgrade {
     public int getCost() {
         return this.cost;
     }
-    public String toString() {
-        return this.name;
-    }
 }

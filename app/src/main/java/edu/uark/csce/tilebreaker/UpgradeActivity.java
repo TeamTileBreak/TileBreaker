@@ -77,6 +77,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             int resid = getResources().getIdentifier (id, "id", getPackageName());
             upgradeBtns.add((Button)findViewById(resid));
             upgradeBtns.get(i).setTag(upgrades.get(i));
+            upgradeBtns.get(i).setText(upgrades.get(i).getDisplayName() + " $" + upgrades.get(i).getCost());
             upgradeBtns.get(i).setOnLongClickListener(new UpgradeClickListener());
         }
 
@@ -103,12 +104,10 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                     Upgrade upgrade = (Upgrade)view.getTag();
                     score += upgrade.getCost();
 
-                    if (view == inventory.get(1))
-                        currentInventoryBackgrounds.set(1,emptyUpgradeSlot);
-                    else if (view == inventory.get(2))
-                        currentInventoryBackgrounds.set(2,emptyUpgradeSlot);
-                    else if (view == inventory.get(3))
-                        currentInventoryBackgrounds.set(3,emptyUpgradeSlot);
+                    for (int i = 1; i < 4; i++) {
+                        if (view == inventory.get(i))
+                            currentInventoryBackgrounds.set(i,emptyUpgradeSlot);
+                    }
 
                     view.setBackground(emptyUpgradeSlot);
                     view.setTag(upgrades.get(0));
