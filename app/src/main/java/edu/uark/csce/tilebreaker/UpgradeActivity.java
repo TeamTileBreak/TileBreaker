@@ -151,7 +151,7 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
             lastUpdate = curTime;
 
             float a = sensorEvent.values[0] + sensorEvent.values[1] + sensorEvent.values[2];
-            float b = last_x-last_y-last_z;
+            float b = last_x+last_y+last_z;
             float speed = Math.abs(a-b) / diffTime * 10000;
 
             //register shake, reset upgrade slots
