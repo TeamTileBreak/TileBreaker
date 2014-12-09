@@ -420,7 +420,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
         df.show(getSupportFragmentManager(), "fragment_alert");
 
         // Stops listening to accelerometer
-        onPause();
+        sensorManager.unregisterListener(this);
     }
 
     public void chooseUpgrade(View view) {
@@ -436,11 +436,11 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                 SensorManager.SENSOR_DELAY_GAME);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        sensorManager.unregisterListener(this);
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        sensorManager.unregisterListener(this);
+//    }
 
 
 
