@@ -384,9 +384,12 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
 
         private void onTouch(int touchX, int touchY){
             paddle.update(touchX);
+            onPause();
         }
 
         private void onRelease(){
+            onResume();
+
             for(Ball ball : balls){
                 System.out.println("RELEASE");
                 if(ball.yvel == 0){
