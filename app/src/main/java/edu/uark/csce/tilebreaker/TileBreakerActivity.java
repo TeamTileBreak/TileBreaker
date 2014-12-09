@@ -12,6 +12,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -47,6 +48,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     public static boolean stickyPaddle = false;
 
     public static String newGame = null;
+    private Handler mHand;
     private MyView view;
     public static int x;
     private SensorManager sensorManager;
@@ -327,9 +329,10 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setColor(Color.WHITE);
                 paint.setStrokeWidth(5);
-                canvas.drawRect(0, 0, getWidth(), 100, paint);
+                //canvas.drawRect(0, 0, getWidth(), 100, paint);
                 paint.setStrokeWidth(0);
                 paint.setTextSize(60);
+                paint.setFakeBoldText(true);
 
                 //Tells view that it needs to be updated
                 int pauseWidth = (getWidth() / 2) - 80;
@@ -384,11 +387,12 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
 
         private void onTouch(int touchX, int touchY){
             paddle.update(touchX);
-            onPause();
+            //unregisterListener();
+            //onPause();
         }
 
         private void onRelease(){
-            onResume();
+            //onResume();
 
             for(Ball ball : balls){
                 System.out.println("RELEASE");
@@ -447,6 +451,7 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+
             x -= (int) event.values[0] * 6;
 
             if (x < 0) {
