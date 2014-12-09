@@ -243,11 +243,14 @@ public class UpgradeActivity extends Activity implements SensorEventListener {
                     if (v == findViewById(R.id.inventory1) || v == findViewById(R.id.inventory2) || v == findViewById(R.id.inventory3)) {
                             Log.d("DRAGGED_VIEW", vie.toString());
                             Log.d("DESTINATION_VIEW", "View = " + v.toString());
+                        //no money
                         if(score < 100) {
                             Toast.makeText(getApplicationContext(),"Not enough Cash! Each upgrade costs: $100",Toast.LENGTH_LONG).show();
+                        //already selected this upgrade
                         } else if (inventory1.getTag() == vie.getTag() || inventory2.getTag() == vie.getTag() || inventory3.getTag() == vie.getTag()){
                             if (v.getTag() != vie.getTag())
                                 Toast.makeText(getApplicationContext(),"Duplicate Upgrades not allowed! Please choose another",Toast.LENGTH_LONG).show();
+                        //good
                         } else {
                             v.setBackground(vie.getBackground());
                             if (v == findViewById(R.id.inventory1))
