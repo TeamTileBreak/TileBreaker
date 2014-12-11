@@ -8,7 +8,7 @@ SPECIFICATIONS:
 There is no min-api stated in the manifest, and we have not run into an api that this app does not run on.  We all have relatively current versions, going as far back as Jellybean.  There are no special packages used, just a vanilla API on a device with moderate to high high pixel count (ldpi renders poorly and in some extreme cases makes the app not functional).
 
 CONTRIBUTIONS:
-Austin Williams contributed to the main screen view, accelerometer control of the paddle, and UI  navigation. The main screen allows you to start a new game, or continue on from your previous game. Midst gameplay, you can seamlessly switch between accelerometer and touch controls for the paddle to optimize your game play strategy. 
+Austin Williams contributed to the main screen view, accelerometer control of the paddle, and UI navigation. The main screen allows you to start a new game, or continue on from your previous game. Amidst gameplay, you can instantly switch between accelerometer and touch controls for the paddle to optimize your gameplay strategy.
 
 Logan Swango was in charge of the upgrade activity.  He implemented the upgrade view, created a drag and drop interface for upgrade selection, and implemented the “shake to clear” functionality via the device accelerometer to reset selected upgrades.  He also implemented the upgrade pricing system and helped make the game visually appealing.
 
@@ -21,7 +21,7 @@ Everyone contributed to bug fixes and overall optimization of the app.
 KNOWN ISSUES:
 Sometimes the ball will go straight through one block and hit the one behind it.
 Sometimes when switching between accelerometer and touch paddle control, the paddle jumps awkwardly to your finger.
-
+Infrequent game crashes on previous versions, has not been an issue in the last few updates, but that could be coincidental.
 
 DEMONSTRATION VIDEO:
 https://www.youtube.com/watch?v=5gPddkdWfjE
