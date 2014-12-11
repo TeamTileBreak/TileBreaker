@@ -259,12 +259,14 @@ public class TileBreakerActivity extends FragmentActivity implements SensorEvent
                 }
                 if(balls.size() == 0){
                     alive = false;
+                    view.setOnTouchListener(null);
                 }
                 double smallestY = 100.0;
                 for(Block block : blocks){
                     block.update();
                     if(block.by >= paddle.ty){
                         alive = false;
+                        view.setOnTouchListener(null);
                     }
                     if(block.ty < smallestY){
                         smallestY = block.ty;
