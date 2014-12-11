@@ -18,9 +18,5 @@ Sometimes the ball will go straight through one block and hit the one behind it.
 Sometimes when switching between accelerometer and touch paddle control, the paddle jumps awkwardly to your finger.
 
 
-
-YouTube Video:
-around 2 minutes long.
-explain what your project is about what are the main
-features of your app, and go through these features.
-upload to youtube and place the link in the readme file.
+TileBreaker Demo Video:
+https://www.youtube.com/watch?v=5gPddkdWfjE
